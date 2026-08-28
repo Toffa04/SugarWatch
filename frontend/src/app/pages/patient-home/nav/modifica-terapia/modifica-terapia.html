@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Modifica assunzione farmaco</h2>
+
+<mat-dialog-content>
+  <div class="flex h-full w-full flex-col">
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Terapia</mat-label>
+      <mat-select [formControl]="selectedTherapy">
+        @for (t of therapies(); track t.id) {
+          <mat-option [value]="t">{{ t.medicine }}</mat-option>
+        }
+      </mat-select>
+      @if (selectedTherapy.hasError('required') && selectedTherapy.touched) {
+        <mat-error>Seleziona una terapia</mat-error>
+      }
+    </mat-form-field>
+
+    <p class="text-lg font-medium">
+      {{ terapia().dateTime | date: 'dd/MM/yyyy HH:mm' }}
+    </p>
+
+    <mat-checkbox
+      [ngModel]="matchesTherapy()"
+      (ngModelChange)="matchesTherapy.set($event)"
+    >Assunzione conforme alla terapia</mat-checkbox>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Quantita'</mat-label>
+      <input matInput type="number" [formControl]="quantity" />
+      @if (quantity.hasError('required') && quantity.touched) {
+        <mat-error>Campo obbligatorio</mat-error>
+      }
+      @if (quantity.hasError('min') && quantity.touched) {
+        <mat-error>La quantita' deve essere maggiore di 0</mat-error>
+      }
+    </mat-form-field>
+
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button matButton="outlined" mat-dialog-close>Cancella</button>
+  <button matButton="outlined" (click)="aggiornaTerapia()">Conferma</button>
+</mat-dialog-actions>

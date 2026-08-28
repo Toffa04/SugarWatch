@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 ed9daad4b110d81013c95f17751007fecff5400d Toffa04 <toffalitommaso@gmail.com> 1786984675 +0200	clone: from github.com:hrabarmatteo/RESTDiabetesLogger.git
+ed9daad4b110d81013c95f17751007fecff5400d 1c382de2c8df047ffa6f4417cbaf0d6eefadad88 Toffa04 <toffalitommaso@gmail.com> 1787040487 +0200	commit: Modifica check attesa verifica utente
+1c382de2c8df047ffa6f4417cbaf0d6eefadad88 bf05a1d178aa3283ba12a20eb6f422f11736cee7 Toffa04 <toffalitommaso@gmail.com> 1787500029 +0200	commit: Sistemazione backend, e aggiungia entita Pathology e ConcomitantTherapy
+bf05a1d178aa3283ba12a20eb6f422f11736cee7 dd533e239a9bdc73c52dc10e07f5f4f8e31b7861 Toffa04 <toffalitommaso@gmail.com> 1787502230 +0200	commit (merge): merge: risolve confilitti con GlycemiaReadingController, GlycemiaReading, AuthService
+dd533e239a9bdc73c52dc10e07f5f4f8e31b7861 00aaddd8201d8ec660dceb756f2b5c31391b6622 Toffa04 <toffalitommaso@gmail.com> 1787666875 +0200	commit: Aggiunta di MedicChangeLogController e MedicChangeLogService e sistemazione MedicChangeLogRepository
+00aaddd8201d8ec660dceb756f2b5c31391b6622 370de7f4212c750fba055fa9519692d2a9c9e7cb Toffa04 <toffalitommaso@gmail.com> 1787750245 +0200	commit: Sistemazione security configuration,GET del paziente

@@ -1,0 +1,53 @@
+<h2 mat-diialog-title>
+    {{ isModifica ? 'Modifica' : 'Aggiungi' }}
+    {{ isConcomitantTherapy ? 'terapia-concomitante' : (data.tipo === 'symptom' ? 'sintomo' : 'patologia') }}
+</h2>
+
+<mat-dialog-content>
+    <div class="fle" h-full w-full flex-col gap-2>
+        @if (isConcomitantTherapy){
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>Farmaco</mat-label>
+                <input matInput type="text" [formControl]="medicine"/>
+                @if (medicine.hasError('required') && medicine.touched){
+                    <mat-error>Campo obbligatorio</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appreance="fill" class="w-full">
+                <mat-label>Motivo (opzionale)</mat-label>
+                <input matInput type="text" [formControl]="reason"/>
+            </mat-form-field>
+        } @else {
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>Descrizione</mat-label>
+                <input matInput type="text" [formControl]="description"/>
+                @if (description.hasError('required') && description.touched) {
+                    <mat-error>Campo obbligatorio</mat-error>
+                }
+            </mat-form-field>
+        }
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Data inizio</mat-label>
+            <input matInput type="date" [formControl]="startDate"/>
+            @if (startDate.hasError('required') && startDate.touched){
+                <mat-error>Campo obbligatorio</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Data fine (lascia vuoto se ancora in corso)</mat-label>
+            <input matInput type="date" [formControl]="endDate"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Note (opzionale)</mat-label>
+            <input matInput type="text" [formControl]="notes"/>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button matButton="outlined" mat-dialog-close>Cancella</button>
+    <button matButton="outlined" (click)="conferma()">Conferma</button>
+</mat-dialog-actions>

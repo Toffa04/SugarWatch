@@ -1,0 +1,76 @@
+<!--<div class="flex flex-col p-4 gap-10 w-80">
+  <button
+    class="aspect-video w-full h-auto flex flex-col items-center justify-center border-2 border-blue-400 bg-white transition-colors"
+    (click)="gestioneUtenti()"
+  >
+    Gestione Utenti
+  </button>
+
+  <button
+    class="aspect-video w-full h-auto flex flex-col items-center justify-center border-2 border-blue-400 bg-white transition-colors"
+    (click)="gestionePazienti()"
+  >
+    Gestione Pazienti
+  </button>
+
+  <button
+    class="aspect-video w-full h-auto flex flex-col items-center justify-center border-2 border-blue-400 bg-white transition-colors"
+    (click)="gestioneMedici()"
+  >
+    Gestione Medici
+  </button>
+</div>-->
+
+<div class="flex h-screen bg-slate-350 text-slate-300">
+
+  <!-- Sidebar -->
+   <aside class="w-90 flex h-full flex-col border-r border-slate-300 bg-white">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2 px-6 py-6 border-b border-slate-200">
+      <mat-icon class="text-blue-500">bloodtype</mat-icon>
+      <span class="font-semibold text-slate-900">SugarWatch</span>
+    </div>
+
+    <!-- Nav links -->
+    <nav class="flex-1 flex flex-col gap-4 px-3 pt-6">
+
+      <button
+          routerLink="gestione-utenti"
+          routerLinkActive="bg-slage-800 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-salte-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+      >
+        <mat-icon class="!text-[20px] !w-5 !h-5">manage_accounts</mat-icon>
+        Gestione Utenti
+      </button>
+
+      <button
+          routerLink="gestione-pazienti"
+          routerLinkActive="bg-slage-800 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-salte-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+      >
+        <mat-icon class="!text-[20px] !w-5 !h-5">personal-injury</mat-icon>
+        Gestione Pazienti
+      </button>
+
+      <button
+          routerLink="gestione-medici"
+          routerLinkActive="bg-slage-800 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-salte-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+      >
+        <mat-icon class="!text-[20px] !w-5 !h-5">medical_services</mat-icon>
+        Gestione Medici
+      </button>
+    </nav>
+
+   </aside>
+
+  <main class="flex-1 overflow-y-auto">
+    <div class="p-6">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

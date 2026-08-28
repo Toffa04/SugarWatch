@@ -1,0 +1,33 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Maven
+backend/target/
+
+# Node / Angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Spring Boot secrets
+backend/src/main/resources/application.properties
+
+# OS
+.DS_Store
+Thumbs.db
+
+# LaTeX generated files
+documentation/*.aux
+documentation/*.log
+documentation/*.out
+documentation/*.toc
+documentation/*.synctex.gz
+documentation/*.fdb_latexmk
+documentation/*.fls
+

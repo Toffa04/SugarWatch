@@ -1,0 +1,90 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Pagina-1" id="O9eR2rUZIFcTjVvGAetM">
+    <mxGraphModel dx="1065" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-1" parent="1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=160;" value="opt" vertex="1">
+          <mxGeometry height="370" width="771" x="29" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-13" parent="OU90jCzFwRzZDw_xiUVS-1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=160;" value="opt" vertex="1">
+          <mxGeometry height="130" width="624.5" x="81" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-14" parent="OU90jCzFwRzZDw_xiUVS-13" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Inserimento sintomi/patologie" vertex="1">
+          <mxGeometry height="30" width="100" x="155.5" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-41" edge="1" parent="OU90jCzFwRzZDw_xiUVS-13" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" target="OU90jCzFwRzZDw_xiUVS-46" value="Inserimento rilevazione(sintomi, patologie)">
+          <mxGeometry relative="1" width="80" x="-0.0211" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="162.16666666666674" y="50" as="sourcePoint" />
+            <mxPoint x="490" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-15" parent="OU90jCzFwRzZDw_xiUVS-1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=160;" value="opt" vertex="1">
+          <mxGeometry height="110" width="624.5" x="81" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-16" parent="OU90jCzFwRzZDw_xiUVS-15" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Inserimento farmaci" vertex="1">
+          <mxGeometry height="30" width="84.5" x="155.5" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-48" edge="1" parent="OU90jCzFwRzZDw_xiUVS-15" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" value="Inserimento rilevazione(farmaci)">
+          <mxGeometry relative="1" width="80" x="0.073" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="162.16666666666674" y="34.579999999999984" as="sourcePoint" />
+            <mxPoint x="475" y="34.579999999999984" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-40" edge="1" parent="OU90jCzFwRzZDw_xiUVS-1" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" target="OU90jCzFwRzZDw_xiUVS-39" value="Inserimento rilevazione(glicemia)">
+          <mxGeometry relative="1" width="80" as="geometry">
+            <mxPoint x="240.99666666666673" y="50" as="sourcePoint" />
+            <mxPoint x="588.3300000000003" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-12" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Insermiento rilevazione" vertex="1">
+          <mxGeometry height="30" width="90" x="180" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-19" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" value="" vertex="1">
+          <mxGeometry height="770" width="25" x="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-20" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="Sistema" vertex="1">
+          <mxGeometry height="770" width="100" x="570" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-39" parent="OU90jCzFwRzZDw_xiUVS-20" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="300" width="50" x="30" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-46" parent="OU90jCzFwRzZDw_xiUVS-20" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="70" width="35" x="15" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-47" parent="OU90jCzFwRzZDw_xiUVS-20" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="70" width="35" x="15" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Paziente" vertex="1">
+          <mxGeometry height="30" width="60" x="242.5" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-27" parent="1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=170;" value="alt" vertex="1">
+          <mxGeometry height="190" width="771" x="29" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-28" parent="OU90jCzFwRzZDw_xiUVS-27" style="text;html=1;" value="[Rilevazione salvata&amp;nbsp;&lt;div&gt;correttamente]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="20" relative="1" width="100" as="geometry">
+            <mxPoint x="20" y="40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-29" parent="OU90jCzFwRzZDw_xiUVS-27" style="line;strokeWidth=1;dashed=1;labelPosition=center;verticalLabelPosition=bottom;align=left;verticalAlign=top;spacingLeft=20;spacingTop=15;html=1;whiteSpace=wrap;" value="[Errore]" vertex="1">
+          <mxGeometry height="10" width="771" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-31" edge="1" parent="OU90jCzFwRzZDw_xiUVS-27" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;rounded=0;" value="Conferma">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="590.5000000000002" y="50" as="sourcePoint" />
+            <mxPoint x="243.16666666666674" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OU90jCzFwRzZDw_xiUVS-32" edge="1" parent="OU90jCzFwRzZDw_xiUVS-27" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;rounded=0;" value="Errore">
+          <mxGeometry relative="1" width="160" x="-0.024" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="588.3300000000003" y="150" as="sourcePoint" />
+            <mxPoint x="240.99666666666675" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

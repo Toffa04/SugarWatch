@@ -1,0 +1,56 @@
+<div class="flex flex-col gap-6">
+
+  <div>
+    <h1 class="text-2xl font-semibold text-slate-900">Panoramica</h1>
+    <p class="text-sm text-slate-500">Numero di utenti registrati nella piattaforma.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+    <!-- Pazienti -->
+    <div class="rounded-xl border border-slate-200 bg-white p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <mat-icon class="text-blue-500">personal_injury</mat-icon>
+        <span class="font-medium text-slate-700">Pazienti</span>
+      </div>
+      @if (numeroPazienti() === null) {
+        <p class="text-sm text-slate-400">Caricamento...</p>
+      } @else {
+        <p class="text-2xl font-semibold text-slate-900">{{ numeroPazienti() }}</p>
+        <p class="text-sm text-slate-500">pazienti registrati</p>
+      }
+    </div>
+
+    <!-- Medici -->
+    <div class="rounded-xl border border-slate-200 bg-white p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <mat-icon class="text-green-600">medical_services</mat-icon>
+        <span class="font-medium text-slate-700">Medici</span>
+      </div>
+      @if (numeroMedici() === null) {
+        <p class="text-sm text-slate-400">Caricamento...</p>
+      } @else {
+        <p class="text-2xl font-semibold text-slate-900">{{ numeroMedici() }}</p>
+        <p class="text-sm text-slate-500">medici registrati</p>
+      }
+    </div>
+
+    <!-- Utenti in attesa di verifica -->
+    <div class="rounded-xl border border-slate-200 bg-white p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <mat-icon class="text-amber-500">pending_actions</mat-icon>
+        <span class="font-medium text-slate-700">In attesa</span>
+      </div>
+      @if (numeroInAttesa() === null) {
+        <p class="text-sm text-slate-400">Caricamento...</p>
+      } @else if (numeroInAttesa() === 0) {
+        <p class="text-2xl font-semibold text-slate-900">0</p>
+        <p class="text-sm text-slate-500">nessuna verifica in sospeso</p>
+      } @else {
+        <p class="text-2xl font-semibold text-slate-900">{{ numeroInAttesa() }}</p>
+        <p class="text-sm text-slate-500">in attesa di verifica</p>
+      }
+    </div>
+
+  </div>
+</div>

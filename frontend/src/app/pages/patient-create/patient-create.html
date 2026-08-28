@@ -1,0 +1,40 @@
+<div class="w-full flex flex-col items-center justify-center p-6">
+  <h1>Completa i dati per continuare</h1>
+  <div class="border-2 border-gray-200 border-solid rounded-xl p-6 w-1/4">
+    <div class="flex flex-col items-center gap-4 p-2">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>First name</mat-label>
+        <input matInput [formControl]="firstName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Last name</mat-label>
+        <input matInput [formControl]="lastName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Birth date</mat-label>
+        <input matInput [matDatepicker]="picker" (dateInput)="selezioneDataNascita($event)" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col gap-4 p-4">
+      <mat-checkbox class="items-left" [(ngModel)]="isSmoker">Fumatore</mat-checkbox>
+
+      <mat-checkbox class="" [(ngModel)]="exSmoker">Ex fumatore</mat-checkbox>
+
+      <mat-checkbox class="" [(ngModel)]="hasAlcoholDependency">Dipendenza da alcool</mat-checkbox>
+
+      <mat-checkbox class="" [(ngModel)]="hasObesity">Obesità</mat-checkbox>
+
+      <mat-form-field class="w-full">
+        <mat-label>Medical history</mat-label>
+        <textarea matInput [formControl]="medicalHistory" ></textarea>
+      </mat-form-field>
+
+      <button matButton="outlined" (click)="finish()">Invia</button>
+    </div>
+  </div>
+</div>

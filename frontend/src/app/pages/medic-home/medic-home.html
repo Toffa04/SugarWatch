@@ -1,0 +1,69 @@
+<!--<div class="flex flex-col p-4 gap-10 w-80">
+  <button
+    class="aspect-video w-full h-auto flex flex-col items-center justify-center border-2 border-blue-400 bg-white transition-colors"
+    (click)="gestionePazienti()"
+  >
+    Gestione pazienti
+  </button>
+
+  <button
+    class="aspect-video w-full h-auto flex flex-col items-center justify-center border-2 border-blue-400 bg-white transition-colors"
+    (click)="gestioneTerapie()"
+  >
+    Gestione terapie
+  </button>
+</div>-->
+
+<div class="flex h-screen bg-slate-350 text-slate-300">
+
+  <!-- Sidebar -->
+   <aside class="w-90 flex h-full flex-col border-r border border-slate-300 bg-white">
+
+    <!-- Logo -->
+     <div class="flex items-center gap-2 px-6 py-6 border-b border-slate-200">
+      <mat-icon class="text-blue-500">bloodtype</mat-icon>
+     </div>
+
+    <!-- Nav links -->
+    <nav class="flex-1 flex flex-col gap-4 px-3 pt-6">
+      <button
+          routerLink="gestione-pazienti"
+          routerLinkActive="bg-slate-800 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+      >
+        <mat-icon class="!text-[20px] !w-5 !h-5">people</mat-icon>
+        Gestione pazienti
+      </button>
+
+      <button
+          routerLink="gestione-terapie"
+          routerLinkActive="bg-slate-800 text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+      >
+        <mat-icon class="!text-[20px] !w-5 !h-5">medication</mat-icon>
+        Gestione terapie
+      </button>
+    </nav>
+
+    <div class="flex items-center gap-3 border-t border-slate-800 px-4 py-4">
+      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-slate-700 text-sm font-medium text-white">
+        {{ (authService.getUsername ?? 'U').charAt(0).toUpperCase() }}
+      </div>
+      <span class="text-sm font-medium text-white">{{ authService.getUsername }}</span>
+    </div>
+   </aside>
+
+   <main class="flex-1 overflow-y-auto">
+    <div class="flex items-center justify-end px-6 py-6 border-b border-slate-200 bg-white">
+      <div class="flex items-center gap-4">
+        <app-notification-bell [userId]="authService.getId!"/>
+        <span class="text-sm font-medium text-slate-700">{{ authService.getUsername }}</span>
+      </div>
+    </div>
+    <div class="p-6">
+      <router-outlet></router-outlet>
+    </div>
+   </main>
+</div>

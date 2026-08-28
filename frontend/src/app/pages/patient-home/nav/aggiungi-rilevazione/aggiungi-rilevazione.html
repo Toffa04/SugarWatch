@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Nuova rilevazione</h2>
+
+<mat-dialog-content>
+  <div class="xl flex h-full w-full flex-col">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Livello glicemia</mat-label>
+      <input matInput type="number" [formControl]="glycemiaLevel" />
+    </mat-form-field>
+
+    <p class="text-lg font-medium">
+      {{ rilevazione().dateTime | date: 'dd/MM/yyyy HH:mm' }}
+    </p>
+
+    <mat-checkbox class="" [(ngModel)]="beforeMeal">Before meal</mat-checkbox>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Eventuali sintomi</mat-label>
+      <input matInput type="string" [formControl]="symptoms" />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button matButton="outlined" mat-dialog-close>Cancella</button>
+  <button matButton="outlined" (click)="aggiungiRilevazione()">Conferma</button>
+</mat-dialog-actions>

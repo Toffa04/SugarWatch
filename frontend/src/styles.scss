@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+
+@import 'tailwindcss/theme.css';
+@import 'tailwindcss/utilities.css';
+
+html {
+  @include mat.theme((
+    color: mat.$azure-palette,
+    typography: Roboto,
+    density: 0
+  ));
+}
+
+.mat-mdc-select-panel {
+  background-color: white !important;
+}
+
+.mat-mdc-menu-panel {
+  background-color: white !important;
+}
+
+.mat-datepicker-content {
+  background-color: white !important;
+}
+
+.mat-datepicker-content.mat-datepicker-content-touch {
+  background-color: white !important;
+}

@@ -1,0 +1,30 @@
+<mat-toolbar class="border-b-4 border-blue-400">
+  <div class="relative flex items-center w-full">
+    <button matButton (click)="home()">
+      <mat-icon>home</mat-icon>
+    </button>
+    <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      Home
+    </span>
+
+    <button matButton [matMenuTriggerFor]="menuNotifiche" class="ml-auto">
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <mat-menu #menuNotifiche="matMenu">
+      <button matButton>
+        <mat-icon>info</mat-icon>
+        Nessuna nuova notifica
+      </button>
+    </mat-menu>
+
+    <button matButton [matMenuTriggerFor]="menuProfilo">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #menuProfilo="matMenu">
+      <button matButton (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Leave
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,10 @@
+0000000000000000000000000000000000000000 42045fe9f1f607b4a063230fb79abce9453177b3 Toffa04 <toffalitommaso@gmail.com> 1786984705 +0200	clone: from github.com:hrabarmatteo/FEDiabetesLogger.git
+42045fe9f1f607b4a063230fb79abce9453177b3 f449cf11949f2d9207fa7e38335ad36e6cba261b Toffa04 <toffalitommaso@gmail.com> 1787040269 +0200	commit: Creazione pagine home admin
+f449cf11949f2d9207fa7e38335ad36e6cba261b fb6db8f3e58c88652bb0e28fa140429f77894728 Toffa04 <toffalitommaso@gmail.com> 1787041776 +0200	pull --tags origin main: Fast-forward
+fb6db8f3e58c88652bb0e28fa140429f77894728 df0009a1135423894152188da1473800194ff62e Toffa04 <toffalitommaso@gmail.com> 1787051277 +0200	pull --tags origin main: Fast-forward
+df0009a1135423894152188da1473800194ff62e 57542db76527868764d2ec63614ed8b0209df8bb Toffa04 <toffalitommaso@gmail.com> 1787063815 +0200	pull --tags origin main: Fast-forward
+57542db76527868764d2ec63614ed8b0209df8bb 312651eaed0c07c2c8280df70d9906ae2ffd0ae4 Toffa04 <toffalitommaso@gmail.com> 1787085961 +0200	pull --tags origin main: Fast-forward
+312651eaed0c07c2c8280df70d9906ae2ffd0ae4 4249c240c5e90f836d0a3f04542ebb3a05e66f72 Toffa04 <toffalitommaso@gmail.com> 1787318181 +0200	reset: moving to origin/main
+4249c240c5e90f836d0a3f04542ebb3a05e66f72 fefc8ce4a5975d05f294cb3dee550f505ba2ec70 Toffa04 <toffalitommaso@gmail.com> 1787499708 +0200	commit: Creazione pagina assunzione farmaci e terapie concomitanti per il paziente
+fefc8ce4a5975d05f294cb3dee550f505ba2ec70 5edd84aa48cbbfd22ab3be10e4c1cb3b0c2f72d0 Toffa04 <toffalitommaso@gmail.com> 1787501240 +0200	commit (merge): merge: risolve conflitto app.routes.ts
+5edd84aa48cbbfd22ab3be10e4c1cb3b0c2f72d0 40b8121956f4a114527d4e484b4993c7cc1224af Toffa04 <toffalitommaso@gmail.com> 1787750040 +0200	commit: Sistemazione livello UI pagina admin e paziente

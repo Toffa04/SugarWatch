@@ -1,0 +1,18 @@
+<div class="flex justify-center items-center h-screen bg-[#f5f5f5]">
+  <div
+    class="bg-white p-8 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.1)] text-center max-w-[400px]"
+  >
+    <h2>Account in attesa di verifica</h2>
+    <p>
+      La tua registrazione e' stata completata correttamente, ma il tuo account deve ancora essere
+      approvato da un amministratore prima che tu possa accedere.
+    </p>
+    <p>Riprovare ad effettuare il login piu' tardi.</p>
+    <button
+      class="mt-4 py-[0.6rem] px-6 border-none rounded-md bg-blue-600 text-white cursor-pointer"
+      (click)="tornaAlLogin()"
+    >
+      Torna al login
+    </button>
+  </div>
+</div>
