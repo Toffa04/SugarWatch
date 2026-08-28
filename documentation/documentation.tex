@@ -1,245 +1,455 @@
 \documentclass{article}
-\usepackage{float} 
+\usepackage{float}
 \usepackage{graphicx}
 \usepackage{mdframed}
 \usepackage{tikz}
 
-\title{Documentazione progetto Ingegneria del Software \\  
-        \large{Software per la gestione di pazienti diabetici} }
+
+\title{Documentazione progetto Ingegneria del Software \\ 
+       \large{Software per la gestione di pazienti diabetici} }
+
 
 \author{Toffali Tommaso - VR 500800}
-        
+      
 \date{August 2026}
+
 
 \begin{document}
 
+
 \maketitle
 
+
 \newpage
+
 
 \tableofcontents
 
+
 \newpage
 \section{Requisiti e Use Case}
+
 
 \subsection{Requisiti}
 Il software sviluppato è un sistema di telemedicina di un servizio clinico per la gestione di pazienti diabetici. Il sistema permette l'interazione di due attori principali: il diabetologo e il paziente. Questi creano un nuovo utente che, dopo essere stato verificato da un admin, finiscono di creare il loro profilo con i dati relativi al ruolo scelto. \\
 Una volta autenticato ogni utente verrà reindirizzato alla propria pagina home, nella quale visualizzerà le azioni e informazioni relative al proprio ruolo. Di seguito è presente un diagramma che rappresenta i casi d'uso per ogni utente dopo la corretta autenticazione.
 
+
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\linewidth]{images/UseCases.png}
-    \caption{Casi d'uso per ruolo}
-    \label{use cases}
+   \centering
+   \includegraphics[width=0.6\linewidth]{images/UseCases.png}
+   \caption{Casi d'uso per ruolo}
+   \label{use cases}
 \end{figure}
+
+
 
 
 %% Per il disegno degli use cases controllare il pacchetto tikz-uml, qui sotto abbiamo una prova
 \subsection{Casi d'uso paziente}
 Dopo che il paziente si è autenticato ed entra nella sua pagina home dove visualizza tutte le azioni a lui disponibili.
 
+
 \subsubsection{Inserimento o modifica rilevazioni}
 Una delle pagine disponibili per il paziente è quella di visualizzazione delle rilevazioni passate che sono state effettuate, con relativa possibilità di modifica di queste, e la possibilità di registrare i dati di una nuova rilevazione.
 \begin{mdframed}
-    \textbf{Attore:} Paziente \\
-    \textbf{Precondizioni:} il paziente deve essersi autenticato correttamente \\
-    \textbf{Passi}:
-    \begin{enumerate}
-        \item Il paziente dalla home page accede alla pagina di visualizzazione e modifica delle rilevazioni.
-        \item Il paziente può:
-        \begin{itemize}
-            \item inserire i dati per una nuova rilevazione: livelli di glicemia, se è stata effettuata prima o dopo un pasto, data e ora.
-            \item modificare i dati di una rilevazione passata, tranne la data e ora.
-            \item Può inserire eventuali sintomi.
-        \end{itemize}
-        \item Il paziente conferma l'inserimento della rilevazione.
-    \end{enumerate}
-    \textbf{Postcondizioni:} La rilevazione viene salvata/aggiornata e se i livelli di glicemia sono al di fuori del normale viene inviata una notifica al medico di riferimento del paziente.
+   \textbf{Attore:} Paziente \\
+   \textbf{Precondizioni:} il paziente deve essersi autenticato correttamente \\
+   \textbf{Passi}:
+   \begin{enumerate}
+       \item Il paziente dalla home page accede alla pagina di visualizzazione e modifica delle rilevazioni.
+       \item Il paziente può:
+       \begin{itemize}
+           \item inserire i dati per una nuova rilevazione: livelli di glicemia, se è stata effettuata prima o dopo un pasto, data e ora.
+           \item modificare i dati di una rilevazione passata, tranne la data e ora.
+           \item Può inserire eventuali sintomi.
+       \end{itemize}
+       \item Il paziente conferma l'inserimento della rilevazione.
+   \end{enumerate}
+   \textbf{Postcondizioni:} La rilevazione viene salvata/aggiornata e se i livelli di glicemia sono al di fuori del normale viene inviata una notifica al medico di riferimento del paziente.
 \end{mdframed}
 
+
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{images/SeqDiaRilevazione.png}
-    \caption{Sequence diagram per inserimento rilevazione paziente}
-    \label{Sequence diagram rilevazione}
+   \centering
+   \includegraphics[width=1\linewidth]{images/SeqDiaRilevazione.png}
+   \caption{Sequence diagram per inserimento rilevazione paziente}
+   \label{Sequence diagram rilevazione}
 \end{figure}
+
 
 \subsubsection{Inserimento assunzione farmaco}
 Un'altra pagina disponibile per il paziente riguarda la visualizzazione delle terapie che gli sono state prescritte dal medico, con relativa possibilità di aggiungere una nuova assunzione di un farmaco tra quelli che ha presenti nelle terapie.
 \begin{mdframed}
-    \textbf{Attore:} Paziente \\
-    \textbf{Precondizioni:} il paziente deve essersi autenticato correttamente \\
-    \textbf{Passi}:
-    \begin{enumerate}
-        \item Il paziente dalla home page accede alla pagina di visualizzazione delle terapie e assunzioni di farmaci.
-        \item Il paziente preme il bottone per inserimento di una nuova assunzione:
-        \begin{itemize}
-            \item Inserisce la medicina assunta, la quantità presa, la data e ora.
-        \end{itemize}
-        \item Il paziente conferma l'inserimento dell'assunzione.
-    \end{enumerate}
-    \textbf{Postcondizioni:} L'assunzione del farmaco viene salvata nel sistema, questo controlla che l'assunzione sia regolare con la terapie prescritta dal medico e in caso negativo notifica il medico di riferimento.
+   \textbf{Attore:} Paziente \\
+   \textbf{Precondizioni:} il paziente deve essersi autenticato correttamente \\
+   \textbf{Passi}:
+   \begin{enumerate}
+       \item Il paziente dalla home page accede alla pagina di visualizzazione delle terapie e assunzioni di farmaci.
+       \item Il paziente preme il bottone per inserimento di una nuova assunzione:
+       \begin{itemize}
+           \item Inserisce la medicina assunta, la quantità presa, la data e ora.
+       \end{itemize}
+       \item Il paziente conferma l'inserimento dell'assunzione.
+   \end{enumerate}
+   \textbf{Postcondizioni:} L'assunzione del farmaco viene salvata nel sistema, questo controlla che l'assunzione sia regolare con la terapie prescritta dal medico e in caso negativo notifica il medico di riferimento.
 \end{mdframed}
+
+
 
 
 \subsection{Casi d'uso medico}
 Dopo che il medico si è autenticato ed entra nella sua pagina home dove visualizza tutte le azioni a lui disponibili.
 \subsubsection{Visualizzazione dei dati del paziente}
 \begin{mdframed}
-    \textbf{Attore:} Medico \\
-    \textbf{Precondizioni:} Il medico deve essere autenticato correttamente \\
-    \textbf{Passi:}
-    \begin{enumerate}
-        \item Il medico dalla sua pagina home accede alla pagina di visualizzazione dati dei pazienti.
-        \item Il medico visualizza una lista dei suoi pazienti con i suoi dati principali.
-    \end{enumerate}
-    \textbf{Postcondizioni:}nessuna
+   \textbf{Attore:} Medico \\
+   \textbf{Precondizioni:} Il medico deve essere autenticato correttamente \\
+   \textbf{Passi:}
+   \begin{enumerate}
+       \item Il medico dalla sua pagina home accede alla pagina di visualizzazione dati dei pazienti.
+       \item Il medico visualizza una lista dei suoi pazienti con i suoi dati principali.
+   \end{enumerate}
+   \textbf{Postcondizioni:}nessuna
 \end{mdframed}
+
 
 \subsubsection{Modifica dei dati del paziente}
 \begin{mdframed}
-    \textbf{Attore:} Medico \\
-    \textbf{Precondizioni:} Il medico deve essere autenticato correttamente \\
-    \textbf{Passi:}
-    \begin{enumerate}
-        \item Il medico dalla sua pagina home accede alla pagina di visualizzazione dati dei pazienti.
-        \item Il medico visualizza una lista dei suoi pazienti con i suoi dati principali.
-        \item Il medico seleziona l'azione di modifica che si trova a fianco di ogni riga di un paziente.
-        \item Il medico può modificare i dati relativi a fattori di rischio del paziente.
-        \item Il medico conferma le modifiche dei dati del paziente.
-    \end{enumerate}
-    \textbf{Postcondizioni:} Il sistema modifica i dati del paziente e viene salvata nella lista delle tracce.
+   \textbf{Attore:} Medico \\
+   \textbf{Precondizioni:} Il medico deve essere autenticato correttamente \\
+   \textbf{Passi:}
+   \begin{enumerate}
+       \item Il medico dalla sua pagina home accede alla pagina di visualizzazione dati dei pazienti.
+       \item Il medico visualizza una lista dei suoi pazienti con i suoi dati principali.
+       \item Il medico seleziona l'azione di modifica che si trova a fianco di ogni riga di un paziente.
+       \item Il medico può modificare i dati relativi a fattori di rischio del paziente.
+       \item Il medico conferma le modifiche dei dati del paziente.
+   \end{enumerate}
+   \textbf{Postcondizioni:} Il sistema modifica i dati del paziente e viene salvata nella lista delle tracce.
 \end{mdframed}
+
 
 \subsubsection{Modifica o aggiunta di terapie}
 \begin{mdframed}
-    \textbf{Attore:} Medico \\
-    \textbf{Precondizioni:} Il medico deve essere autenticato correttamente \\
-    \textbf{Passi:}
-    \begin{enumerate}
-        \item Il medico dalla sua pagina home accede alla pagina di visualizzazione delle terapie.
-        \item Il medico visualizza una lista delle terapie che sono collegate ai suoi pazienti.
-        \item Il medico può:
-        \begin{itemize}
-            \item modificare una terapia già assegnata.
-            \item aggiungere una nuova terapia ad un paziente.
-        \end{itemize}
-        \item Il medico conferma le modifiche che ha effettuato.
-    \end{enumerate}
-    \textbf{Postcondizioni:} Il sistema modifica i dati della terapia che è stata aggiunta/modificata.
+   \textbf{Attore:} Medico \\
+   \textbf{Precondizioni:} Il medico deve essere autenticato correttamente \\
+   \textbf{Passi:}
+   \begin{enumerate}
+       \item Il medico dalla sua pagina home accede alla pagina di visualizzazione delle terapie.
+       \item Il medico visualizza una lista delle terapie che sono collegate ai suoi pazienti.
+       \item Il medico può:
+       \begin{itemize}
+           \item modificare una terapia già assegnata.
+           \item aggiungere una nuova terapia ad un paziente.
+       \end{itemize}
+       \item Il medico conferma le modifiche che ha effettuato.
+   \end{enumerate}
+   \textbf{Postcondizioni:} Il sistema modifica i dati della terapia che è stata aggiunta/modificata.
 \end{mdframed}
+
 
 \subsection{Casi d'uso admin}
 L'amministratore del sistema gestisce gli utenti del sistema, si occupa di modificare/cancellare account di pazienti e medici. La registrazione viene effettuata tramite un form dove viene specificato il ruolo, prima che un utente possa utilizzare le funzioni relative al suo ruolo nel sistema l'amministratore deve autorizzare la richiesta di creazione dell'account da parte dell'utente
 
+
 \subsubsection{Gestione degli utenti}
 \begin{mdframed}
-    \textbf{Attore:} Admin \\
-    \textbf{Precondizioni:} L'admin deve essere autenticato correttamente \\
-    \textbf{Passi:}
-    \begin{enumerate}
-        \item L'admin dalla sua pagina home accede alla pagina di gestione degli utenti
-        \item L'admin visualizza la lista degli utenti
-        \item L'admin può:
-        \begin{itemize}
-            \item Modificare un utente
-            \item Eliminare un utente
-        \end{itemize}
-    \end{enumerate}
-    \textbf{Postcondizione:} L'utente è stato modificato o eliminato.
+   \textbf{Attore:} Admin \\
+   \textbf{Precondizioni:} L'admin deve essere autenticato correttamente \\
+   \textbf{Passi:}
+   \begin{enumerate}
+       \item L'admin dalla sua pagina home accede alla pagina di gestione degli utenti
+       \item L'admin visualizza la lista degli utenti
+       \item L'admin può:
+       \begin{itemize}
+           \item Modificare un utente
+           \item Eliminare un utente
+       \end{itemize}
+   \end{enumerate}
+   \textbf{Postcondizione:} L'utente è stato modificato o eliminato.
 \end{mdframed}
+
 
 \subsubsection{Gestione delle richieste di registrazione}
 \begin{mdframed}
-    \textbf{Attore:} Admin \\
-    \textbf{Precondizioni:} L'admin deve essere autenticato correttamente \\
-    \textbf{Passi:}
-    \begin{enumerate}
-        \item L'admin dalla sua pagina home accede alla pagina di gestione degli utenti
-        \item L'admin visualizza la lista degli utenti
-        \item L'admin può:
-        \begin{itemize}
-            \item Accettare la richiesta di registrazione di un utente
-            \item Rifiutare la richiesta di registrazione di un utente
-        \end{itemize}
-    \end{enumerate}
-    \textbf{Postcondizione:} Se accettata l'utente viene verificato e può procedere con il completamento dei dati, altrimenti niente.
+   \textbf{Attore:} Admin \\
+   \textbf{Precondizioni:} L'admin deve essere autenticato correttamente \\
+   \textbf{Passi:}
+   \begin{enumerate}
+       \item L'admin dalla sua pagina home accede alla pagina di gestione degli utenti
+       \item L'admin visualizza la lista degli utenti
+       \item L'admin può:
+       \begin{itemize}
+           \item Accettare la richiesta di registrazione di un utente
+           \item Rifiutare la richiesta di registrazione di un utente
+       \end{itemize}
+   \end{enumerate}
+   \textbf{Postcondizione:} Se accettata l'utente viene verificato e può procedere con il completamento dei dati, altrimenti niente.
 \end{mdframed}
+
 
 \subsubsection{Visualizzazione delle modifiche dei medici}
 Il sistema tiene traccia delle modifiche che i medici effettuano sui pazienti
 
+
 \begin{mdframed}
-    \textbf{Attore:} Admin \\
-    \textbf{Precondizioni:} L'admin deve essere autenticato correttamente \\
-    \textbf{Passi:}
-    \begin{enumerate}
-        \item L'admin dalla sua pagina home accede alla pagina di visualizzazione delle modifiche da parte dei medici
-        \item L'admin visualizza la lista delle modifiche effettuate
-    \end{enumerate}
-    \textbf{Postcondizione:} Nessuna
+   \textbf{Attore:} Admin \\
+   \textbf{Precondizioni:} L'admin deve essere autenticato correttamente \\
+   \textbf{Passi:}
+   \begin{enumerate}
+       \item L'admin dalla sua pagina home accede alla pagina di visualizzazione delle modifiche da parte dei medici
+       \item L'admin visualizza la lista delle modifiche effettuate
+   \end{enumerate}
+   \textbf{Postcondizione:} Nessuna
 \end{mdframed}
+
+
 
 
 \subsection{Activity diagram}
 
+
 \subsubsection{Registrazione di un utente}
 Solamente pazienti e medici posso registrarsi al sistema, la loro registrazione consente nella creazione di un utente con il proprio ruolo, una volta verificato dall'admin questo può terminare la registrazione completando i dati per il ruolo che ha scelto.
 
+
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{images/RegistrazioneUtente.png}
-    \caption{Registrazione da parte di un utente}
-    \label{RegistrazioneUtente}
+   \centering
+   \includegraphics[width=0.5\linewidth]{images/RegistrazioneUtente.png}
+   \caption{Registrazione da parte di un utente}
+   \label{RegistrazioneUtente}
 \end{figure}
+
 
 \subsubsection{Attività del paziente}
 Di seguito è presente un activity diagram per un paziente in seguito alla corretta autenticazione al sistema.
 
+
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\linewidth]{images/ActivityPaziente.png}
-    \caption{Activity diagram di un Paziente}
-    \label{ActivityPaziente}
+   \centering
+   \includegraphics[width=0.8\linewidth]{images/ActivityPaziente.png}
+   \caption{Activity diagram di un Paziente}
+   \label{ActivityPaziente}
 \end{figure}
+
 
 \subsubsection{Attività del medico}
 Di seguito è presente un activity diagram per un medico in seguito alla corretta autenticazione al sistema.
+
 
 \subsubsection{Attività dell'amministratore}
 Di seguito è presente un activity diagram per un admin in seguito alla corretta autenticazione al sistema.
 
 
 
+
+
+
 \newpage
 \section{Sviluppo}
 
-\subsection{Processo di sviluppo}
-Il lavoro svolto per la realizzazione del progetto e' stato 
-Il team è composto da due sviluppatori che hanno lavorato in parallelo sulle diverse funzionalità fornite dal sistema. Ogni qualvolta che venivano decise le funzionalità da implementare veninavano divise in base al ruolo su cui venivano svolte, per ogni task svolta e testata questa veniva passata anche all'altro membro che la testava a sua volta e ne dava dei riscontri.\\
-Per la gestione del codice è stato utilizzato \textit{git} come sistema di versionamento
-\subsection{Progettazione e pattern utilizzati}
-Il progetto segue un'architettura del tipo \textit{Client-Server} ispirata al pattern \textit{Model-View-Controller (MVC)}. Il sistema è diviso in due parti:
-\begin{itemize}
-    \item \textbf{Client:} si occupa dell'interfaccia ed è ciò con cui l'utente interagisce. L'implementazione è stata possibile tramite un framework per applicazioni web, \textit{Angular Material}, che tramite richieste HTTP comunica al server per ricevere e modificare dati.
-    \item \textbf{Server:} realizzato con \textit{Spring boot}, espone delle API che il Cliente invoca con le richieste HTTP per lo scambio dei dati, gestisce sia la logica di business (Model) che il controllo delle richieste (Controller).
-    \begin{itemize}
-        \item \textbf{Model:} rappresenta le entità principali del sistema, come ad esempio \textit{Pazienti}, \textit{Medici}, \textit{Rilevazioni}, \textit{Notifiche} e  il \textit{Change log}.
-        \item \textbf{Controller:} gestisce le richieste che provengono dal client e le invia al Model per la gestione dei dati. 
-    \end{itemize}
-\end{itemize}
-Questa scelta di architettura permette di separare le responsabilità tra le due parti del sistema, rendendo più semplice la manutenzione e l'evoluzione del software. Inoltre, l'utilizzo del pattern MVC consente di avere una chiara distinzione tra la logica di business e la presentazione dei dati, facilitando lo sviluppo e il testing delle singole componenti.
-\subsection{Implementazione e design pattern utilizzati}
 
+\subsection{Processo di sviluppo}
+Il processo di sviluppo del software è stato condotto individualmente, seguendo un processo
+\textbf{iterativo e incrementale}, ispirato ai principi \textit{Agile} ma semplificato nello
+sviluppo, organizzato e gestito tramite \textit{GitHub} e ad un flusso di lavoro Git basato
+su commit frequenti e granularità fine.
+\vspace{1em}
+\noindent
+\newline
+La pianificazione del progetto prevede rilasci incrementali, ciascuno corrispondente
+ad un macro-requisito individuato nella fase di analisi (si veda la sezione 1): partendo dal sistema
+di autenticazione autorizzazione, lo sviluppo è proceduto in modo verticale, implementando
+di volta in volta la catena di \textit{Model} \( \rightarrow \) \textit{Repository} \( \rightarrow \) \textit{Service} \( \rightarrow \) \textit{Controller}
+lato backend, e a seguire il corrispondente componente \textit{Angular} lato frontend, in modo da poter validare
+end-to-end ogni funzionalità appena completata, prima di passare alla pagina successiva.
+Questo approccio ha permesso di individuare in maniera tempestiva incoerenze tra il contratto esposto
+dalle API REST e le aspettative del client, andando a ridurre il rischio di dover ricontrollare ampie porzioni di codice in
+fase avanzate di sviluppo.
+\vspace{1em}
+\noindent
+\newline
+L'ordine di sviluppo delle funzionalità principali è il seguente:
+\begin{enumerate}
+   \item \textbf{Autenticazione}: login, registrazione, verifica da parte dell'amministratore e configurazione di sicurezza basata sui token JWT
+   \item \textbf{Rilevazioni}: gestione delle rilevazioni glicemiche giornaliere del paziente
+   \item \textbf{Terapie}: gestione delle terapie prescritte dal medico e delle relative assunzioni di farmaci da parte del paziente, incluso il controllo di aderenza alla terapia
+   \item \textbf{Condizioni concomitanti}: la scelta implementativa in questa sezione è ricaduta sul fatto che il paziente potesse inserire delle auto-dichiarazioni di sintomi, patologie o terapie che segue in modo parallelo rispetto a quelle prescritte dal medico e non legate al piano di cura diabetico.
+   \item \textbf{Notifiche}: sistema di notifiche automatiche, sia reattive (per eventi come l'inserimento di una rilevazione fuori dalla soglia) sia proattive (tramite controlli pianificati periodicamente).
+   \item \textbf{Dashboard}: costruiti aggregando dati già esposti dalle API sviluppate nei punti precedenti.
+\end{enumerate}
+Per la gestione del codice sorgente, come sopraindicato, è stato usato \textbf{Git} come sistema di versionamento, con la creazione di due repository, una dedicata al backend ed una dedicata al frontend.
+Questa scelta è motivata dal fatto di voler disaccoppiare il ciclo di vita e cronologia dei due sottosistemi, che pur comunicando tramite un contratto REST condiviso evolvono con cadenze e logiche diverse.
+Come ambienti di sviluppo ho deciso di adottare \textbf{Intellij IDEA} per la parte di Java/Spring Boot e \textbf{Visual Studio Code} per la parte di Angular/TypeScript
+\subsection{Progettazione e pattern utilizzati}
+Il sistema è stato progettato secondo un architettura \textbf{Client-Server} a due livelli, comunicanti tramite API REST su protocollo HTTP:
+\begin{itemize}
+   \item \textbf{Client (Single Page Application):} realizzato con \textbf{Angular} è responsabile della presentazione dei dati e dell'interazione con l'utente. Il client non contiene logica di business (es. calcolo delle soglie glicemiche, verifiche aderenze terapia), che sono state delegate al server; si occupa invece della validazione sintattica dei form, gestione dello stato locale della UI e orchestrazione delle chiamate HTTP verso il backend.
+   \item \textbf{Server:} realizzato con \textbf{Spring Boot} espone un insieme di risorse REST che sono organizzate per dominio (rilevazioni glicemiche, terapie, assunzioni farmaci, condizioni concomitanti, notifiche, gestione utenti) ed esso comprende sia la logica di business sia le regole di autorizzazione basate sul ruolo dell'utente autenticato.
+\end{itemize}
+All'interno del server è stata adottata un'\textbf{architettura a livelli}:
+\begin{itemize}
+   \item \textbf{model}: Ospita le \textbf{JPA Entity} che rilettono la struttura delle tabelle relazionali (User, Patient, Medic, Therapy, MedicineIntake, GlycemiaReading
+       , Symptom, Pathology, ConcomitantTherapy, Notification), ciascuna di esse è stata mappata usando le annotazioni \textit{Jakarta Persistence} (@Entity, @ManyToOne, @Column, ecc.);
+   \item \textbf{repository}: racchiude le interfacce che estendono la \textit{JpaRepository}, che forniscono l'accesso ai dati tramite query;
+   \item \textbf{service}: contiene la logica di business, riguardanti tutte le regole che permettono i vari controlli riguardanti assunzioni, terapie, patologie.
+   \item \textbf{controller}: pubblica gli endpoint REST, andando ad affidare ogni operazione al corrispondente service e traducendo il risultato in una risposta HTTP con l'apposito status code.
+   \item \textbf{config}: contiene la configurazione di sicurezza (SecurityConfiguration) e il filtro per l'autenticazione JWT (JwtFilter).
+\end{itemize}
+Questa implementazione, per quanto non rispecchi in modo del tutto preciso il pattern Model-View-Controller
+(essendo la View del tutto esterna al server), ne condivide il principio cardine, quindi, la separazione tra la rappresentazione dei dati (Model),
+l'esposizione delle operazioni disponibili (Controller), e la presentazione all'utente (Viwe, controllata dal client Angular).
+\subsection{Comunicazione e gestione delle richieste}
+La comunicazione tra client e server avviene tramite le richieste HTTP, con il payload che è in formato \textbf{JSON}, rispecchiando il paradigma REST,
+dove ogni risorsa del dominio è caratterizzata da un URI dedicato (es. /therapy/patienti/{patientId}), e le operazioni su di essa sono distinte tramite
+HTTP usando la \textb{GET} per la lettura, \textbf{POST} per la creazione, \textbf{PUT} per l'aggiornamento,
+\textbf{PATCH} per fare aggiornamenti parziali (come le chiusure), \textbf{DELETE} per la cancellazione.
+\vspace{1em}
+\noindent
+\newline
+Lato client, tutte le chiamate HTTP sono gestite da un unico servizio Angular (HttpClientService) il quale non interagisce direttamente
+ma invoca i metodi (es. nuovaAssunzioneFarmaco, getTerapieAttive, chiudiCondizione) al cui interno è presente la costruzione dell'URL e la gestione della richiesta.
+\vspace{1em}
+\noindent
+\newline
+L'autenticazione delle richieste avviene tramite un \textbf{HTTP Interceprot}, lato angular (authInterceptor), che intercetta
+qualsiasi richiesta che esce e se è presente un token JWT valido, quest'ultimo viene automaticamente allegato all'header \textit{Authorization}
+in formato \textit{Bearer <token>}. Questa scelta implementativa mi permette di evitare che la logica di autenticazione debba essere replicata manualmente
+in ciascuna chiamata.
+\vspace{1em}
+\noindent
+\newline
+I dati che riceviamo dal backend (in formato JSON) vengono deserializzati (lato client) nelle istanze di classi \textit{TypeScript} dedicate
+(es. MedicineIntake, Therapy, AppNotification), dove i costruttori effettuano un'opera di normalizzazione, in particolar modo
+la conversione delle stringhe di data nel formato \textbf{ISO-8601} in istanze \textit{Date} native, andando così a disaccoppiare la rappresentazione
+di trasporto (JSON) da quella usata internamente nel client.
+\subsection{Implementazione e design pattern utilizzati}
+\subsubsection{Generalità}
+Durante lo sviluppo sono stati adottati, diversi pattern di progettazione:
+\begin{itemize}
+   \item \textbf{Repository/DAO Pattern}: viene implementato usando le interfacce \textit{Spring Data JPA} che estendono \textbf{JpaRepository}.
+       Ogni repository assume il compito di \textit{Data Access Object} per la corrispondente entità
+       isolando i dettagli dell'accesso al database relazionale.
+   \item \textbf{Wrapper}: applicatao, lato backend, ogni classe \textit{Service} funge da facciata al di sopra di uno o più repository, andando ad esporre
+       operazioni di business di livello più alto (es. checkConsistencyWithTherapy, checkGlycemiaAlertForReading). Lato frontend, come citato poc'anzi, \textit{HttpClientService}
+       assume il compito di facciata che punta all'insieme di risorse RESP che vengono esposte dal backend.
+   \item \textbf{Observer pattern}: presente lato backend, dove le relazioni JPA (@ManyToOne) fanno in modo che la modifica di un'entità referenziata
+       come ad esempio \textit{Therapy} venga automaticamente riflessa nelle entità correlate al momento del fetch
+   \item \textbf{Strategy pattern (applicato all UI)}: riguardo la gestione delle condizioni concomitanti è stato realizzato un componente generico (ConditionTable)
+       che determina sia le colonne da visualizzare sia l'endpoint REST da invocare.
+\end{itemize}
+\subsubsection{Autenticazione e autorizzazione}
+Per quanto riguarda la gestione dell'autenticazione e dell'autorizzazione è stat usata la libreria \textbf{Spring Security},
+in modo coerente con la natura REST: il server non mantiene la sessione lato backend ed ogni richiesta viene autenticata tramite un token \textbf{JWT (JSON Web Token)}
+\vspace{1em}
+\noindent
+\newline
+Le principali classi coinvolte nella configurazione della sicurezza sono:
+\begin{itemize}
+   \item \textbf{JwtFilter}: si tratta di un filtro Servlet, il cui compito è estrarre il token JWT dalla richiesta in ingresso e verificarne la validità. Nel caso
+       di risultato positivo viene popolato il \textit{SecurityContext} con l'identità e i ruoli dell'utente che è stato autenticato.
+   \item \textbf{SecurityConfiguration}: definisce le regole di autorizzazione per ciascun endopoint. Il sistema sviluppa un controllo di accesso sulla base dei ruoli dell'utente
+       (\textbf{RBAC Role-based Access Control}), rispettando i tre attori (\textit{PATIENT}, \textit{MEDIC}, \textit{ADMIN}).
+       Una particolarità per gli endpoint relativi alle risorse del paziente, l'autorizzazione non si limita a verificare solo il possesso del ruolo \textit{PATIENT},
+       ma svolge una valutazione dinamica riguardo l'identificativo del paziente in modo tale che corrisponda effettivamente all'utente autenticato (tramite il metodo \textbf{checkId()}),
+       andando a realizzare un controllo di autorizzazione a livello di singola risorsa e non solo del ruolo generico. Per quanto riguarda ruoli con privilegi più ampi, come \textbf{Medico} e \textbf{Paziente}
+       i due godono di condizioni di accesso alla piattaforma meno restrittiva, coerentemente con la necessità di di supervisionare il paziente da parte del medico.
+\end{itemize}
+Questo sviluppo ci consente di garantire che un paziente possa consultare e modificare esclusivamente le proprie rilevazioni, che un medico possa consulatre i dati
+di qualunque paziente ma creare o modificare prescrizioni terapeutiche solamente nell'ambito della propria attività clinica, e che l'amministratore di sistema mantenga la visibilità e controllo completo sull'anagrafica
+degli utenti, incluso il processo di verifica delle nuove registrazioni.
+\subsubsection{Model: repository e service layer}
+Il modello del dominio rispecchia la struttura richiesta nelle specifiche di progetto, andando a distinguere le varie entità.
+In particolare è stata effettuata una netta separazione tra:
+\begin{itemize}
+   \item \textbf{Therapy}: rappresenta la prescrizione da parte del medico diabetologo per un determinato paziente (farmaco, numero di assunzioni giornaliere, quantità, eventuali indicazioni)
+       soggetta inoltre ad uno stato di ciclo di vita (\textbf{TherapyStatus}, con valori quali \textit{ACTIVE} e \textit{SUSPENDED}) e la tracciabilità delle modifiche (campi \textbf{lastModifiedBy} e \textbf{lastModifiedAt});
+   \item \textbf{MedicineIntake}: rappresenta l'evento di assunzione registrato dal paziente (farmaco, quantità, data e ora), collegato tramite la relazione \textbf{@ManyToOne} alla terapia di riferimento, e dotato di un attributo
+       booleano (\textbf{matchesTherapy}) che calcola ciò che viene dichiarato dal paziente con quello prescritto;
+   \item \textbf{Symptom, Pathology, ConcomitationTherapy}: sono tre entità di forma analoga che modellano sintomi, patologie e terapie concomitanti auto dichiarate dal paziente,
+       indipendenti dal piano di cura assegnato dal medico diabetologo e che sono caratterizzate da un periodo di validità: la data di fine nulla (\textbf{endDate == null}) rappresenta che
+       una condizione è ancora in corso, d'altro canto nel caso esistesse una data di fine indicherebbe che la condizione è cessata.
+\end{itemize}
+Come di consueto, ogni entità è affiancata da un'interfaccia Repository dedicata, che definisce (oltre alle operazioni CRUD ereditate) metodi di query specifici per il dominio, con il compito di recuperare le condizioni necessarie.
+La logica di business, concordata nel \textit{Service}, è responsabile in pariticolare di:
+\begin{itemize}
+   \item validazione dell'esistenza del paziente referenziato
+   \item calcolo degli attributi derivati (aderenza alla terapia, superamento soglie glicemiche)
+   \item orchestrare, nel caso del \textbf{NotificationService}, la generazione di notifiche a seguido di eventi applicativi
+       (creazione di una rilevazione fuori dalla soglia) o di controlli pianificati (verifica giornaliere dell'aderenza terapeutica), impostata alle ore 20:00.
+       Quest'ultima implementazione è stata fatta tramite un componente schedulato (\textbf{@Scheduled}) che itera periodicamente
+       sull'insieme dei pazienti.
+\end{itemize}
 
 
 \newpage
 \section{Test e validazione}
+Per testare il software sono stati usati diversi tipi di test, tra cui:
+\begin{itemize}
+   \item Revisione del codice: il codice è stato revisionato parecchie volte per garantire che fosse
+       stato scritto in modo che rispecchiasse le specifiche del progetto richieste.
+   \item Verifica della consistenza: sono stati effettuati dei test per verificare che il software fosse coerente con le specifiche
+       del progetto e che funzionasse, tramite testing di Spring Boot che permettono di testare le componenti. Questo test è automatizzato
+       grazie all'API di JUnit.
+   \item E' stato fatto gran uso, sopratutto nella parte iniziale, di Postman per testare tutti i controller del softwar, andando a verificare che le richieste HTTP restituissero i risultati attesi
+   \item Test riguardante la sicurezza e la solidità del sitema di autenticazione.
+   \item Il software è stato testato più volte dallo sviluppatore
+   \item Il software è stato fatto testare anche da due utenti generici
+\end{itemize}
+\subsection{Revisione del codice}
+La fase di revisione del codice di per sé è durata per tutto lo sviluppo del software, adottando controlli e maggiore attenzione per le
+parti che non funzionavano a livello di UI. Inoltre è stato controllato anche che il codice fosse stato scritto in modo chiaro e comprensibile e che rispettasse le specifiche del progetto.
+E' stato revisionato il codice per il controllo di eventuali bug o errori generali. Per poi terminare con una revisione finale di tutto il codice e anche la risposta visiva al termine del progetto.
 
-\subsection{Revisione}
-\subsection{Test}
-\subsection{Test manuali}
-\subsection{Test da parte di utenti}
+
+\subsection{Test dei service e dei repository}
 
 
+\subsection{Test dei controller}
+Per testare le \textbf{API REST} del software sviluppato, ovvero ciò che i controller vanno ad esporre, è stato usato \textbf{Postman}.
+Si tratta di un tool gratuito che permette di inviare richieste HTTP e di visualizzare le risposte. Come sopra citato, questo test è stato fatto in gran parte
+durante l'implementazione iniziale del backend, permettendomi di simulare l'autenticazione degli utenti e anche iniettando dati fittizzi riguardanti le assunzioni dei farmaci
+o delle terapie. Al momento dell'autenticazione di un utenti, viene restituito un token JWT che viene usato per atuenticare le richieste successive. Il token viene poi inserito nella cartella
+dell'ambiente di Postman ed usato per autenticare le richieste da parte di tutti i controller.
+\subsection{Test sicurezza}
+Nell'ambito delle attività di verifica del software, è stata effettuata, come attività aggiuntiva non espressamente richiesta nei requisiti, una valutazione preliminare della superficie
+d'attacco relativa a vulnerabilità di tipo \textbf{SQL Injection}. In particolare, sono stati usati pattern e payload rappresentativi
+di tecniche di SQL injection al fine di verifica la corretta validazione, sanificazione e gestione degli input da parte dell'applicazione e di accertare che gli stessi non potessore influenzare la costruzione
+o l'esecuzione delle query SQL.
+\vspace{1em}
+\noindent
+\newline
+L'attività è stata svolta autonomamente anche in considerazione del mio interesse personale
+nell'ambito della \textbf{Cybersecurity}, con l'obiettivo di approfondire ulteriormente gli aspetti di sicurezza dell'applicazione
+oltre ai test funzionali previsti. Ad esempio alcuni pattern usati sono:
+\begin{itemize}
+   \item \textbf{Alterazione della condizione logica}: ' OR '1'='1
+   \item \textbf{Chiusura della stringa e aggiunta di una condizione}: ' OR 1=1 --
+   \item \textbf{Verifica di condizioni logiche false/vere}: ' AND 1=1 -- e ' AND 1=2 --
+   \item \textbf{Iniezioni di payload nella url tramite union}: ' UNION SELECT NULL --
+\end{itemize}
+\subsection{Test manuale dello sviluppatore}
+In questa fase di test, che come citato poc'anzi è durata per tutto il tempo di sviluppo del software, mi sono impegnato a verificare
+manualmente che tutte le funzionalità implementate funzionassero come presvisto, guardando anche con un occhio critico il lavoro svolto e impegnandomi a trovare una soluzione
+ottimale rispetto a quella implementata (sia a livello interfaccia utente sia per quanto riguarda la progettazione concettuale del software).
+\vspace{1em}
+\noindent
+\newline
+Riassumendo, i punti che sono stati testati con maggiore accuratezza sono stati:
+\begin{itemize}
+   \item Verifica del login
+   \item Verifica della registrazione
+   \item Verifica che l'utente possa modificare i propri dati
+   \item Verifica che le notifiche vengano create correttamente
+   \item Verifica che le notifiche vengano cancellate correttamente
+   \item Verifica dei vari inserimenti
+   \item Verifica che le azioni da parte dell'amministratore funzionassero rispecchiando le specifiche
+\end{itemize}
+\subsection{Test utenti generici}
+Infine per testare il software mi sono affidato a due utenti generici esterni, in modo tale da ricevere feedback sulle
+funzionalità implementate.
+In particolare entrambi gli utenti hanno effettuato una registrazione di un nuovo account e hanno provato ad usare il software come
+pazienti, replicando la stessa cosa fingendo di essere dei medici diabetologi.
+Il feedback che ho ricevuto è stato positivo e mi ha aiutato a migliorare anche la parte di interfaccia utente, in modo da rendere
+il software semplice, leggero ed intuitivo.
 \end{document}
