@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 
+@import '@angular/cdk/overlay-prebuilt.css';
 @import 'tailwindcss/theme.css';
 @import 'tailwindcss/utilities.css';
 

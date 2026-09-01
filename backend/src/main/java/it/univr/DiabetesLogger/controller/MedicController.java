@@ -64,7 +64,7 @@ public class MedicController {
         try{
             List<Patient> patients = medicService.getPatients(id);
             if(patients.isEmpty()){
-                return ResponseEntity.ok("Nessun paziente trovato per questo medico");
+                return ResponseEntity.ok(patients); // se vuoto torna []
             }
 
             return ResponseEntity.ok(patients);

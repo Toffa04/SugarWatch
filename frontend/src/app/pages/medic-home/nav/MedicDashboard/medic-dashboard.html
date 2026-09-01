@@ -1,0 +1,59 @@
+<div class="p-6">
+  <h1 class="text-2xl font-bold text-slate-900">Buongiorno,</h1>
+  <p class="text-slate-500 mb-6">Ecco un riepilogo della situazione dei tuoi pazienti.</p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+    <!-- Notifiche -->
+    <div class="border border-slate-200 rounded-lg p-4 flex flex-col gap-2">
+      <div class="flex items-center gap-2 text-slate-700">
+        <mat-icon class="!text-blue-500">notifications</mat-icon>
+        <span class="font-medium">Notifiche</span>
+      </div>
+
+      @if (notifiche().length === 0) {
+        <span class="text-sm text-slate-400 mt-2">Nessuna notifica</span>
+      } @else {
+        <span class="text-3xl font-bold text-slate-900 mt-1">{{ notifiche().length }}</span>
+        <span class="text-sm text-slate-400">
+          {{ notifiche()[0].message }}
+        </span>
+      }
+    </div>
+
+    <!-- Pazienti a rischio -->
+    <div class="border border-slate-200 rounded-lg p-4 flex flex-col gap-2">
+      <div class="flex items-center gap-2 text-slate-700">
+        <mat-icon class="!text-red-500">warning</mat-icon>
+        <span class="font-medium">Pazienti a rischio</span>
+      </div>
+
+      <span class="text-3xl font-bold text-slate-900 mt-1">
+        {{ pazientiSopraSoglia().length }}
+      </span>
+      <span class="text-sm text-slate-400">
+        {{ pazientiSopraSoglia().length === 0 ? 'Nessun paziente sopra soglia' : 'Con glicemia fuori soglia' }}
+      </span>
+    </div>
+
+    <!-- Andamento glicemia -->
+    <div class="border border-slate-200 rounded-lg p-4 flex flex-col gap-2">
+      <div class="flex items-center gap-2 text-slate-700">
+        <mat-icon class="!text-red-500">monitor_heart</mat-icon>
+        <span class="font-medium">Andamento glicemia</span>
+      </div>
+
+      <mat-form-field appearance="fill" class="w-full !mt-1">
+        <mat-label>Paziente</mat-label>
+        <mat-select [formControl]="selectedPatient" (selectionChange)="onPatientChange($event.value)">
+          @for (p of pazienti(); track p.id) {
+            <mat-option [value]="p">{{ p.firstName }} {{ p.lastName }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <canvas #chartCanvas class="mt-1"></canvas>
+    </div>
+
+  </div>
+</div>

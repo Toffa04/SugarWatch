@@ -106,8 +106,9 @@ Dopo che il medico si è autenticato ed entra nella sua pagina home dove visuali
    \textbf{Precondizioni:} Il medico deve essere autenticato correttamente \\
    \textbf{Passi:}
    \begin{enumerate}
-       \item Il medico dalla sua pagina home accede alla pagina di visualizzazione dati dei pazienti.
-       \item Il medico visualizza una lista dei suoi pazienti con i suoi dati principali.
+       \item Il medico accede alla sua area riservata
+       \item Il medico puo' accedere alla lista dei pazienti
+       \item Il medico puo' visualizzare i dati del paziente e lo storico delle rilevazioni
    \end{enumerate}
    \textbf{Postcondizioni:}nessuna
 \end{mdframed}
@@ -128,7 +129,6 @@ Dopo che il medico si è autenticato ed entra nella sua pagina home dove visuali
    \textbf{Postcondizioni:} Il sistema modifica i dati del paziente e viene salvata nella lista delle tracce.
 \end{mdframed}
 
-
 \subsubsection{Modifica o aggiunta di terapie}
 \begin{mdframed}
    \textbf{Attore:} Medico \\
@@ -147,6 +147,45 @@ Dopo che il medico si è autenticato ed entra nella sua pagina home dove visuali
    \textbf{Postcondizioni:} Il sistema modifica i dati della terapia che è stata aggiunta/modificata.
 \end{mdframed}
 
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=1.3\linewidth]{images/adMedic.drawio.pdf}
+   \caption{Sequence Diagram del medico}
+   \label{use case}
+\end{figure}
+
+\subsection{Ricezione delle notifiche}
+Il paziente e il medico possono ricevere delle notifiche dal sistema, se il paziente si diementica di 
+assumere i farmaci il sistema manda una notifica per ricordarglielo, oppure se le soglie di glcemia o sono leggermente
+piu' alte/basse o sono gravemente piu' alte/basse e in base a questo cambia anche il tipo di notifica.
+\begin{mdframed}
+    \textbf{Attore:} Paziente o Medico \\
+    \textbf{Precondizioni:} Il paziente o medico devono essere autenticati \\
+    \textbf{Passi:}
+    \begin{enumerate}
+        \item Il paziente o medico accede alla sua home page
+        \item Il paziente o medico visualizza la campanella delle notifiche
+        \item Il paziente o medico possono visualizzare:
+        \begin{itemize}
+            \item Notifiche lette
+            \item Notifiche da leggere
+        \end{itemize}
+    \end{enumerate}
+    \textbf{Postcondizioni:} Se viene visualizzata una notifica, questa viene marcata come letta
+\end{mdframed}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.5\linewidth]{images/sdNotifica.drawio.pdf}
+    \caption{Sequence Diagram della ricezione delle notifiche}
+\end{figure}
+
+Il sistema invia delle notifiche ai seguenti attori:
+\begin{itemize}
+    \item \textbf{Paziente:} avvisa il paziente che ha dimenticato di assumere il farmaco
+    \item \textbf{Al medico di riferimento del paziente:} per avvisare che il paziente non segue la terpia da piu' di tre giorni
+    \item \textbf{A tutti i medici:} per segnalare i pazienti che registrano livelli di glicemia sopra le soglie
+\end{itemize}
 
 \subsection{Casi d'uso admin}
 L'amministratore del sistema gestisce gli utenti del sistema, si occupa di modificare/cancellare account di pazienti e medici. La registrazione viene effettuata tramite un form dove viene specificato il ruolo, prima che un utente possa utilizzare le funzioni relative al suo ruolo nel sistema l'amministratore deve autorizzare la richiesta di creazione dell'account da parte dell'utente
@@ -236,13 +275,20 @@ Di seguito è presente un activity diagram per un paziente in seguito alla corre
 \subsubsection{Attività del medico}
 Di seguito è presente un activity diagram per un medico in seguito alla corretta autenticazione al sistema.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.3\linewidth]{images/adMedico.drawio.pdf}
+    \caption{Activity Diagram del medico}
+\end{figure}
 
 \subsubsection{Attività dell'amministratore}
 Di seguito è presente un activity diagram per un admin in seguito alla corretta autenticazione al sistema.
 
-
-
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.2\linewidth]{images/adAdmin.drawio.pdf}
+    \caption{Activity Diagram dell'Admin}
+\end{figure}
 
 
 \newpage
@@ -299,10 +345,21 @@ All'interno del server è stata adottata un'\textbf{architettura a livelli}:
 Questa implementazione, per quanto non rispecchi in modo del tutto preciso il pattern Model-View-Controller
 (essendo la View del tutto esterna al server), ne condivide il principio cardine, quindi, la separazione tra la rappresentazione dei dati (Model),
 l'esposizione delle operazioni disponibili (Controller), e la presentazione all'utente (Viwe, controllata dal client Angular).
+\vspace{1em}
+\noindent
+\newline
+A seguire sono rappresentati i diagrammi UML delle classi del Model e del Controller, che rappresentano 
+le entita' principali del software e le loro relazioni.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.2\linewidth]{images/plantuml.png}
+    \caption{Classi UML dei controller principali}
+\end{figure}
 \subsection{Comunicazione e gestione delle richieste}
 La comunicazione tra client e server avviene tramite le richieste HTTP, con il payload che è in formato \textbf{JSON}, rispecchiando il paradigma REST,
 dove ogni risorsa del dominio è caratterizzata da un URI dedicato (es. /therapy/patienti/{patientId}), e le operazioni su di essa sono distinte tramite
-HTTP usando la \textb{GET} per la lettura, \textbf{POST} per la creazione, \textbf{PUT} per l'aggiornamento,
+HTTP usando la \textbf{GET} per la lettura, \textbf{POST} per la creazione, \textbf{PUT} per l'aggiornamento,
 \textbf{PATCH} per fare aggiornamenti parziali (come le chiusure), \textbf{DELETE} per la cancellazione.
 \vspace{1em}
 \noindent
@@ -403,7 +460,15 @@ E' stato revisionato il codice per il controllo di eventuali bug o errori genera
 
 
 \subsection{Test dei service e dei repository}
-
+I test del codice, inseriti nella cartella test, sono degli unit test che verificano il corretto 
+funzionamento dei Repository e dei Service. Per testare il software e' stata usata l'annotazione di 
+Spring Boot @DataJpaTest, che permette di testare le interazioni con un database di test che e' salvato in memoria.
+Quello che segue e' un esempio di test per il repository del paziente, che verifica le operazioni 
+CRUD (Create, Read, Update, Delete). Le funzioni con il tag @Test sono i test veri e propri e ad ogni test
+e' stato assegnato un ordine tramite l'annotazione @Order. Effettuiamo l'azione e verifichiamo che il risultato
+sia effettivamente quello atteso, usando le asserzioni di JUnit.
+La medesima cosa viene fatta per tutti i repository e i service del Model, mentre per il controller
+non sono stati fatti degli unit test, ma tutti i controller sono stati testati tramite Postman.
 
 \subsection{Test dei controller}
 Per testare le \textbf{API REST} del software sviluppato, ovvero ciò che i controller vanno ad esporre, è stato usato \textbf{Postman}.

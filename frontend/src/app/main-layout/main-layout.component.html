@@ -1,5 +1,12 @@
-<app-header></app-header>
+<!--<app-header></app-header>
 
 <main>
   <router-outlet></router-outlet>
-</main>
+</main>-->
+
+<div clas="flex flex-col h-screen">
+  <app-header></app-header>
+  <main class="flex-1 overflow-hidden">
+    <router-outlet></router-outlet>
+  </main>
+</div>

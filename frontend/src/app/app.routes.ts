@@ -17,9 +17,11 @@ import { CondizioniConcomitanti } from './pages/patient-home/nav/condizioni-conc
 import { GestionePazientiMedic } from './pages/medic-home/nav/gestione-pazienti/gestione-pazienti';
 import { GestioneTerapie } from './pages/medic-home/nav/gestione-terapie/gestione-terapie';
 import { Dashboard } from './pages/patient-home/nav/dashboard/dashboard';
+import { RilevazioniPaziente } from './pages/medic-home/nav/rilevazioni-paziente/rilevazioni-paziente';
+import { MedicDashboard } from './pages/medic-home/nav/MedicDashboard/medic-dashboard';
 
 
-export const routes: Routes = [
+/*export const routes: Routes = [
   {
     path: '',
     component: Login,
@@ -116,7 +118,7 @@ export const routes: Routes = [
         component: GestioneMedici,
         pathMatch: 'full',
       },
-      /*{
+      {
         path: 'patient/rilevazioni-giornaliere',
         component: RilevazioniGiornaliere,
         pathMatch: 'full',
@@ -130,7 +132,7 @@ export const routes: Routes = [
         path: 'patient/condizioni-concomitanti',
         component: CondizioniConcomitanti,
         pathMatch: 'full',
-      },*/
+      },
       {
         path: 'medic/gestione-pazienti',
         component: GestionePazientiMedic,
@@ -139,6 +141,105 @@ export const routes: Routes = [
       {
         path: 'medic/gestione-terapie',
         component: GestioneTerapie,
+        pathMatch: 'full',
+      },
+      {
+        path: 'home-medic',
+        component: MedicHome,
+        children: [
+          {
+            path: '',
+            component: Dashboard,
+            pathMatch: 'full',
+          },
+          {
+            path: 'gestione-pazienti',
+            component: GestionePazienti,
+            pathMatch: 'full',
+          },
+          {
+            path: 'gestione-terapie',
+            component: GestioneTerapie,
+            pathMatch: 'full',
+          },
+          {
+            path: 'rilevazioni-paziente',
+            component: RilevazioniPaziente,
+            pathMatch: 'full',
+          },
+        ],
+      },
+    ],
+  },
+];*/
+export const routes: Routes = [
+  {
+    path: '',
+    component: Login,
+    pathMatch: 'full',
+  },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'home-patient',
+        component: PatientHome,
+        children: [
+          { path: '', component: Dashboard, pathMatch: 'full' },
+          { path: 'rilevazioni-giornaliere', component: RilevazioniGiornaliere, pathMatch: 'full' },
+          { path: 'assunzioni-farmaci', component: AssunzioneFarmaci, pathMatch: 'full' },
+          { path: 'condizioni-concomitanti', component: CondizioniConcomitanti, pathMatch: 'full' },
+        ],
+      },
+      {
+        path: 'home-medic',
+        component: MedicHome,
+        children: [
+          { path: '', component: MedicDashboard, pathMatch: 'full' },
+          { path: 'gestione-pazienti', component: GestionePazientiMedic, pathMatch: 'full' },  // <-- CORRETTO
+          { path: 'gestione-terapie', component: GestioneTerapie, pathMatch: 'full' },
+          // rimossa { path: 'rilevazioni-paziente', component: RilevazioniPaziente, pathMatch: 'full' },
+        ],
+      },
+      {
+        path: 'admin',
+        component: AdminHome,
+        children: [
+          { path: '', component: Overview, pathMatch: 'full' },
+          { path: 'gestione-utenti', component: GestioneUtenti, pathMatch: 'full' },
+          { path: 'gestione-pazienti', component: GestionePazienti, pathMatch: 'full' },
+          { path: 'gestione-medici', component: GestioneMedici, pathMatch: 'full' },
+        ],
+      },
+      {
+        path: 'create-patient',
+        component: PatientCreate,
+        pathMatch: 'full',
+      },
+      {
+        path: 'create-medic',
+        component: MedicCreate,
+        pathMatch: 'full',
+      },
+      {
+        path: 'attesa-verifica',
+        component: AttesaVerifica,
+        pathMatch: 'full',
+      },
+      {
+        path: 'admin/gestione-utenti',
+        component: GestioneUtenti,
+        pathMatch: 'full',
+      },
+      {
+        path: 'admin/gestione-pazienti',
+        component: GestionePazienti,
+        pathMatch: 'full',
+      },
+      {
+        path: 'admin/gestione-medici',
+        component: GestioneMedici,
         pathMatch: 'full',
       },
     ],

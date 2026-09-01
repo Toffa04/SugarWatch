@@ -4,5 +4,6 @@ export interface LoginResponse{
     token: string;
     id: number;
     role: Role;
-    firstLogin: boolean
+    firstLogin: boolean;
+    username: string;
 }

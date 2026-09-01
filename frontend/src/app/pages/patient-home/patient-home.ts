@@ -4,7 +4,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
-import { NotificationBell } from '../../shared/notification-bell/notification-bell';
 
 @Component({
   selector: 'app-patient-home',
@@ -15,7 +14,6 @@ import { NotificationBell } from '../../shared/notification-bell/notification-be
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
-    NotificationBell
   ],
   templateUrl: './patient-home.html',
   styles: ``,

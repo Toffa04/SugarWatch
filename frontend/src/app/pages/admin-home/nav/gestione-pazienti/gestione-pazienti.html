@@ -1,7 +1,11 @@
 <table mat-table [dataSource]="dataPatient" class="mat-shadow-2">
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Azioni</th>
-    <td mat-cell *matCellDef="let element"></td>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button matTooltip="Assegna medico" (click)="assegnaMedico(element)">
+        <mat-icon>person_add</mat-icon>
+      </button>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="id">
@@ -22,6 +26,13 @@
   <ng-container matColumnDef="birthDate">
     <th mat-header-cell *matHeaderCellDef>Data di nascita</th>
     <td mat-cell *matCellDef="let element">{{ element.birthDate }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="medico">
+    <th mat-header-cell *matHeaderCellDef>Medico di riferimento</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.referralMedic ? (element.referralMedic.firstName + ' ' + element.referralMedic.lastName) : 'Nessuno' }}
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,3 +1,5 @@
+import { Medic } from "./Medic";
+
 export class Patient {
   id!: number;
   firstName!: string;
@@ -8,6 +10,7 @@ export class Patient {
   hasAlcoholDependency: boolean;
   hasObesity: boolean;
   medicalHistory: string;
+  referralMedic?: Medic | null;
 
   constructor(
     firstName: string,

@@ -19,7 +19,7 @@
   </button>
 </div>-->
 
-<div class="flex h-screen bg-slate-350 text-slate-300">
+<div class="flex h-full bg-slate-350 text-slate-300">
 
   <!-- Sidebar -->
    <aside class="w-90 flex h-full flex-col border-r border-slate-300 bg-white">
@@ -64,18 +64,18 @@
     </button>
     </nav>
 
-    <div class="flex items-center gap-3 border-t border-slate-800 px-4 py-4">
+    <div class="flex items-center gap-3 border-t border-slate-200 px-4 py-4">
       <div class="flex h-9 w-9 items-center justify-center rounded-full bg-slate-700 text-sm font-medium text-white">
         {{ (authService.getUsername ?? 'U').charAt(0).toUpperCase()}}
       </div>
-      <span class="text-sm font-medium text-white">{{ authService.getUsername }}</span>
+      <span class="text-sm font-medium text-slate-900 truncate">{{ authService.getUsername }}</span>
+      <span class="text-xs text-slate-400">Paziente</span>
     </div>
   </aside>
 
   <main class="flex-1 overflow-y-auto">
     <div class="flex items-center justify-end px-6 py-6 border-b border-slate-200 bg-white">
       <div class="flex items-center gap-4">
-        <app-notification-bell [userId]="authService.getId!"/>
         <span class="text-sm font-medium text-slate-700">{{ authService.getUsername }}</span>
       </div>
     </div>

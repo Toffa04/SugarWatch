@@ -1,1 +1,82 @@
-<p>gestione-terapie works!</p>
+<div class="p-2">
+    <button mat-raised-button (click)="nuovaTerapia()">
+        <mat-icon>add</mat-icon>
+        <a>Nuova terapia</a>
+    </button>
+</div>
+
+<div>
+    <table
+        mat-table
+        [dataSource]="dataTerapie"
+        class="mat-shadow-2"
+        matSort
+        matSortActive="paziente"
+        matSortDirection="asc"
+    >
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Azioni</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="Modifica terapia" (click)="modificaTerapia(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="Sospendi terapia" (click)="sospendiTerapia(element)">
+                    <mat-icon>pause_circle</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paziente">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Paziente</th>
+            <td mat-cell *matCellDef="let element">{{ nomeCompleto(element) }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="medicine">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Farmaco</th>
+            <td mat-cell *matCellDef="let element">{{ element.medicine }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="dosesPerDay">
+            <th mat-header-cell *matHeaderCellDef>Assunzioni/die</th>
+            <td mat-cell *matCellDef="let element">{{ element.dosesPerDay }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>Quantita'</th>
+            <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="notes">
+            <th mat-header-cell *matHeaderCellDef>Indicazioni</th>
+            <td mat-cell *matCellDef="let element">{{ element.notes }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Stato</th>
+            <td mat-cell *matCellDef="let element">
+                @if (element.status === 'ACTIVE') {
+                    <mat-chip class="!bg-green-100 !text-green-700">Attiva</mat-chip>
+                } @else {
+                    <mat-chip class="!bg-slate-200 !text-slate-600">Sospesa</mat-chip>
+                }
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell text-center py-4" [attr.colspan]="displayedColumns.length">
+                @if (loading()) {
+                    Caricamento...
+                } @else {
+                    Nessuna terapia trovata
+                }
+            </td>
+        </tr>
+    </table>
+
+    <div class="absolute inset-x-0 bottom-0">
+        <mat-paginator [pageSizeOptions]="[25, 50, 100]" [pageSize]="paginatorSize()"></mat-paginator>
+    </div>
+</div>

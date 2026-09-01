@@ -85,11 +85,9 @@ public class TherapyService implements CrudService<Therapy>{
     }
 
     // terapia attiva di un paziente
-    public Optional<Therapy> getActiveTherapy(Integer patientId){
+    public List<Therapy> getActiveTherapy(Integer patientId){
         return therapyRepository
-                .findByPatientIdAndStatus(patientId, TherapyStatus.ACTIVE)
-                .stream()
-                .findFirst();
+                .findByPatientIdAndStatus(patientId, TherapyStatus.ACTIVE);
     }
 
     // terapie sospese di un paziente

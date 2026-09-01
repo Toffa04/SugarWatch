@@ -28,7 +28,7 @@ public class NotificationController {
         try{
             List<Notification> notification = notificationService.getByUser(userId);
             if(notification.isEmpty()){
-                return ResponseEntity.ok("Nessuna notifica trovata");
+                return ResponseEntity.ok(notification); // modificato perche il backend restituisce 200 ok ma il body era una stringa semplice
             }
             return ResponseEntity.ok(notification);
         } catch(Exception e){

@@ -63,7 +63,7 @@ export class Login {
       const user = new LoginRequest(this.emailLogin.value, this.passwordLogin.value);
       this.httpClientService.login(user).subscribe({
         next: (res: LoginResponse) => {
-          this.authService.login(res.token, res.id, this.emailLogin.value, res.role.toString());
+          this.authService.login(res.token, res.id, this.emailLogin.value, res.username, res.role.toString());
           switch (res.role) {
             case Role.ADMIN:
               this.router.navigate(['/admin']);

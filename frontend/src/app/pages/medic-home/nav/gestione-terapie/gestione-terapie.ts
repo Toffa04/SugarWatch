@@ -14,6 +14,8 @@ import { catchError, forkJoin, of } from 'rxjs';
 import { HttpClientService } from '../../../../service/http-client.service';
 import { ModificaTerapia } from '../../../patient-home/nav/modifica-terapia/modifica-terapia';
 import el from '@angular/common/locales/el';
+import { AuthService } from '../../../../service/auth.service';
+import { AggiornaTerapiaMedic, TerapiaMedicDialogData } from '../aggiorna-terapia-medic/aggiorna-terapia-medic';
 
 @Component({
   selector: 'app-gestione-terapie',
@@ -51,7 +53,10 @@ export class GestioneTerapie {
   paginator = viewChild<MatPaginator>(MatPaginator);
   paginatorSize = signal(50);
 
-  constructor(private httpClient: HttpClientService) {
+  constructor(
+    private httpClient: HttpClientService,
+    private authService: AuthService,
+  ) {
     this.loadData();
     effect(() => {
       this.dataTerapie.sort = this.sort() ?? null;
@@ -64,7 +69,7 @@ export class GestioneTerapie {
   loadData() {
     this.loading.set(true);
     
-    this.httpClient.getPazienti().subscribe({
+    this.httpClient.getListaPazienti().subscribe({
       next: (pazienti) => {
         this.pazienti = pazienti ?? [];
 
@@ -104,12 +109,12 @@ nomeCompleto(el: Therapy): string {
 }
 
 nuovaTerapia() {
-  const dialogConfig = new MatDialogConfig<ModificaTerpiaData>();
+  const dialogConfig = new MatDialogConfig<TerapiaMedicDialogData>();
   dialogConfig.disableClose = true;
-  dialogConfig.width = '500p';
+  dialogConfig.width = '500px';
   dialogConfig.data = { mode: 'create', pazienti: this.pazienti };
 
-  const dialogRef = this.dialog.open(ModificaTerapia, dialogConfig);
+  const dialogRef = this.dialog.open(AggiornaTerapiaMedic, dialogConfig);
   dialogRef.afterClosed().subscribe({
     next: (confermato) => {
       if (confermato) this.loadData();
@@ -118,12 +123,12 @@ nuovaTerapia() {
 }
 
 modificaTerapia(el: Therapy) {
-  const dialogConfig = new MatDialogConfig<ModificaTerpiaData>();
+  const dialogConfig = new MatDialogConfig<TerapiaMedicDialogData>();
   dialogConfig.disableClose = true;
   dialogConfig.width = '500px';
   dialogConfig.data = { mode: 'edit', terapia: el };
 
-  const dialogRef = this.dialog.open(ModificaTerapia, dialogConfig);
+  const dialogRef = this.dialog.open(AggiornaTerapiaMedic, dialogConfig);
   dialogRef.afterClosed().subscribe({
     next: (confermato) => {
       if (confermato) this.loadData();
@@ -132,10 +137,11 @@ modificaTerapia(el: Therapy) {
 }
 
 sospendiTerapia(el: Therapy) {
-  if(!confirm('Sospendere la terapia con ${el.medicine per ${this.nomeCompleto(el)}?')) {
+  if(!confirm(`Sospendere la terapia con ${el.medicine} per ${this.nomeCompleto(el)}?`)) {
     return;
   }
 
+  const medicId = this.authService.getId!;
   this.httpClient.sospendiTerapia(el.id).subscribe({
     next: () => {
       this.snackBar.open('Terapia sospesa con successo', 'Ok');

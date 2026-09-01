@@ -2,6 +2,7 @@ package it.univr.DiabetesLogger.controller;
 
 import it.univr.DiabetesLogger.model.GlycemiaReading;
 import it.univr.DiabetesLogger.service.GlycemiaReadingService;
+import it.univr.DiabetesLogger.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class GlycemiaReadingController {
 
     @Autowired
     private GlycemiaReadingService glycemiaReadingService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     // GET /glycemia/patient/{patientId} -> MEDIC o PATIENT (solo se stesso)
     @GetMapping("/patient/{patientId}")
@@ -134,6 +138,7 @@ public class GlycemiaReadingController {
         try{
             GlycemiaReading saved =
                     glycemiaReadingService.createForPatient(patientId, reading);
+            notificationService.checkGlycemiaAlertForReading(saved);
             return ResponseEntity.status(HttpStatus.CREATED).body(saved);
         } catch(RuntimeException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

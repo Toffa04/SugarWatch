@@ -173,12 +173,14 @@ public class AuthController {
         private Integer id;
         private Role role;
         private boolean firstLogin;
+        private String username;
 
-        public LoginResponse(String token, Integer id, Role role, boolean firstLogin){
+        public LoginResponse(String token, Integer id, Role role, boolean firstLogin, String username){
             this.token = token;
             this.id = id;
             this.role = role;
             this.firstLogin = firstLogin;
+            this.username = username;
         }
 
         public String getToken() { return token; }
@@ -187,14 +189,13 @@ public class AuthController {
         public Integer getId(){ return this.id; }
         public void setId(Integer id){ this.id = id; }
 
-        public Role getRole() {
-            return role;
-        }
-        public void setRole(Role role) {
-            this.role = role;
-        }
+        public Role getRole() { return role; }
+        public void setRole(Role role) { this.role = role; }
 
-        public boolean isFirstLogin() {return firstLogin;}
-        public void setFirstLogin(boolean firstLogin) {this.firstLogin = firstLogin;}
+        public boolean isFirstLogin() { return firstLogin; }
+        public void setFirstLogin(boolean firstLogin) { this.firstLogin = firstLogin; }
+
+        public String getUsername() { return username; }
+        public void setUsername(String username) { this.username = username; }
     }
 }

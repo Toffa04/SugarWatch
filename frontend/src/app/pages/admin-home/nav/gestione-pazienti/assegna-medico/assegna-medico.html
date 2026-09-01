@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Assegna medico di riferimento</h2>
+<mat-dialog-content>
+  <p>Paziente: {{ data.paziente.firstName }} {{ data.paziente.lastName }}</p>
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Medico</mat-label>
+    <mat-select [formControl]="selectedMedic">
+      @for (m of data.medici; track m.id) {
+        <mat-option [value]="m">{{ m.firstName }} {{ m.lastName }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton="outlined" mat-dialog-close>Annulla</button>
+  <button matButton="outlined" (click)="conferma()">Conferma</button>
+</mat-dialog-actions>

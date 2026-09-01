@@ -57,7 +57,7 @@ public class AuthService {
         };
 
         // 3. genera e ritorna il token
-        return new AuthController.LoginResponse(jwtService.generationToken(email, user.getRole()), user.getId(), user.getRole(), firstLogin) ;
+        return new AuthController.LoginResponse(jwtService.generationToken(email, user.getRole()), user.getId(), user.getRole(), firstLogin, user.getUsername()) ;
     }
 
     public User registerUser(String username, String email, String password, Role role){

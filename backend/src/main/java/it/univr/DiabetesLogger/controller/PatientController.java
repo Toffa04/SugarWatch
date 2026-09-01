@@ -154,7 +154,7 @@ public class PatientController {
 
     // PUT /patient/{patientId}/medic/{medicId}
     // assegna medico di riferimento
-    @PutMapping("/patient/{patientId}/medic/{medicId}")
+    @PutMapping("/{patientId}/medic/{medicId}")
     public ResponseEntity<?> assignMedic(@PathVariable Integer patientId, @PathVariable Integer medicId){
 
         if(patientId == null || patientId <= 0){

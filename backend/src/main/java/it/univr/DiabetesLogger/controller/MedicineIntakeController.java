@@ -30,7 +30,7 @@ public class MedicineIntakeController {
         try{
             List<MedicineIntake> intakes = medicineIntakeService.getByPatient(patientId);
             if(intakes.isEmpty()){
-                return ResponseEntity.ok("Nessuna assunzione trovata");
+                return ResponseEntity.ok(intakes);
             }
             return ResponseEntity.ok(intakes);
         } catch(Exception e){
@@ -73,7 +73,7 @@ public class MedicineIntakeController {
             List<MedicineIntake> intakes =
                     medicineIntakeService.getInconsistentIntakes(patientId);
             if(intakes.isEmpty()){
-                return ResponseEntity.ok("Nessuna assunzione non coerente trovata");
+                return ResponseEntity.ok(intakes); // modifica bug
             }
             return ResponseEntity.ok(intakes);
         } catch(Exception e){
@@ -92,7 +92,7 @@ public class MedicineIntakeController {
         try{
             boolean missed = medicineIntakeService.hasMissedIntakesFor3Days(patientId);
             if(missed){
-                return ResponseEntity.ok("Il paziente non assume farmaci da 3+ giorni");
+                return ResponseEntity.ok(missed); // farmaco non assunto da + di 3 gg
             }
             return ResponseEntity.ok("il paziente sta seguendo la terapia");
         } catch(Exception e){

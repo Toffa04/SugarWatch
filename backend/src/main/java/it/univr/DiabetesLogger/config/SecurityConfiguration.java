@@ -163,11 +163,17 @@ public class SecurityConfiguration {
                             request
                                     //.requestMatchers(HttpMethod.GET, "/patient", "/patient/{id}", "/patient/medic/{medicId}")
                                     //.hasAnyAuthority("MEDIC", "ADMIN")
-                                    .requestMatchers(HttpMethod.GET, "patient/{id}")
+                                    .requestMatchers(HttpMethod.GET, "/patient")
+                                    .hasAnyAuthority("MEDIC", "ADMIN")
+
+                                    .requestMatchers(HttpMethod.GET, "/patient/{id}")
                                     .access(new WebExpressionAuthorizationManager(
                                             "hasAnyAuthority('MEDIC', 'ADMIN') or " +
                                                     "(hasAuthority('PATIENT') and authentication.getPrincipal().checkId(#id))"
                                     ))
+
+                                    .requestMatchers(HttpMethod.GET, "/patient/medic/{medicId}")
+                                    .hasAnyAuthority("MEDIC", "ADMIN")
 
                                     .requestMatchers(HttpMethod.POST, "/patient")
                                     .hasAnyAuthority("PATIENT","ADMIN")

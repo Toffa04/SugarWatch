@@ -11,6 +11,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RilevazioniPaziente } from '../rilevazioni-paziente/rilevazioni-paziente';
 import { ModificaPaziente } from '../modifica-paziente/modifica-paziente';
+import { DatePipe } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-gestione-pazienti',
@@ -21,6 +23,7 @@ import { ModificaPaziente } from '../modifica-paziente/modifica-paziente';
     MatTooltipModule,
     MatSortModule,
     MatPaginatorModule,
+    DatePipe,
   ],
   templateUrl: './gestione-pazienti.html',
   styles: ``,
@@ -31,7 +34,7 @@ export class GestionePazientiMedic {
   readonly dialog = inject(MatDialog);
 
   public dataPazienti = new MatTableDataSource<Patient>([]);
-  public displayedColumns = ['actions', 'firstName', 'lastName', 'birthDate', 'medicalHistory'];
+  public displayedColumns = ['actions', 'firstName', 'lastName', 'birthDate', 'medico', 'medicalHistory'];
 
   sort = viewChild<MatSort>(MatSort);
   paginator = viewChild<MatPaginator>(MatPaginator);
@@ -48,7 +51,7 @@ export class GestionePazientiMedic {
   }
 
   loadData() {
-    this.httpClient.getPazienti().subscribe({
+    this.httpClient.getListaPazienti().subscribe({
       next: (res) => {
         this.dataPazienti.data = res;
       },

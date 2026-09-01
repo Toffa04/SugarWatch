@@ -47,16 +47,16 @@ export class AuthService {
     return !!this.token.value;
   }
 
-  login(token: string, id: number, email: string, /*username: string,*/ ruolo: string) {
+  login(token: string, id: number, email: string, username: string, ruolo: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('id', id.toString());
     localStorage.setItem('email', email);
-    /*localStorage.setItem('username', username);*/
+    localStorage.setItem('username', username);
     localStorage.setItem('ruolo', ruolo);
     this.token.next(token);
     this.id.next(id);
     this.email.next(email);
-    /*this.username.next(username);*/
+    this.username.next(username);
     this.role.next(ruolo);
   }
 

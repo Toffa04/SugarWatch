@@ -28,7 +28,7 @@ public class TherapyController {
         try{
             List<Therapy> therapies = therapyService.getByPatient(patientId);
             if(therapies.isEmpty()){
-                return ResponseEntity.ok("Nessuna terapia trovata");
+                return ResponseEntity.ok(therapies); // no terapia trovata
             }
             return ResponseEntity.ok(therapies);
         } catch(Exception e){
@@ -45,12 +45,8 @@ public class TherapyController {
         }
 
         try{
-            Optional<Therapy> therapy = therapyService.getActiveTherapy(patientId);
-            if(therapy.isEmpty()){
-                return ResponseEntity.status((HttpStatus.NOT_FOUND))
-                        .body("Nessuna terapia attiva trovata");
-            }
-            return ResponseEntity.ok(therapy.get());
+            List<Therapy> therapy = therapyService.getActiveTherapy(patientId);
+            return ResponseEntity.ok(therapy);
         } catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Errore nel recupero della terapia attiva");
@@ -67,7 +63,7 @@ public class TherapyController {
         try{
             List<Therapy> therapies = therapyService.getSuspendedTherapies(patientId);
             if(therapies.isEmpty()){
-                return ResponseEntity.ok("Nessuna terapia sospesa trovata");
+                return ResponseEntity.ok(therapies); // terapia sospesa
             }
             return ResponseEntity.ok(therapies);
         } catch(Exception e){
@@ -86,7 +82,7 @@ public class TherapyController {
         try{
             List<Therapy> therapies = therapyService.getModifiedTherapies(patientId);
             if(therapies.isEmpty()){
-                return ResponseEntity.ok("Nessuna terapia modificata trovata");
+                return ResponseEntity.ok(therapies);
             }
             return ResponseEntity.ok(therapies);
         } catch(Exception e){
@@ -99,13 +95,13 @@ public class TherapyController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id){
         if(id == null || id <= 0){
-            return ResponseEntity.ok("Id terapia non valido");
+            return ResponseEntity.badRequest().body("Id terapia non valido");
         }
 
         try{
             Optional<Therapy> therapy = therapyService.getById(id);
             if(therapy.isEmpty()){
-                return ResponseEntity.ok("Terapia non trovata");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Terapia non trovata");
             }
             return ResponseEntity.ok(therapy.get());
         } catch(Exception e){

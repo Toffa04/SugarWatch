@@ -1,1 +1,25 @@
-<p>modifica-paziente works!</p>
+<h2 mat-dialog-title>
+    Modifica dati clinici: {{ paziente.firstName }} {{ paziente.lastName }}
+</h2>
+
+<mat-dialog-content>
+    <div class="flex h-full w-full flex-col gap-3">
+
+        <span class="text-sm font-medium text-slate-600">Fattori di rischio</span>
+
+        <mat-checkbox [(ngModel)]="isSmoker.value">Fumatore</mat-checkbox>
+        <mat-checkbox [(ngModel)]="isExSmoker.value">Ex-fumatore</mat-checkbox>
+        <mat-checkbox [(ngModel)]="hasAlcoholDependency.value">Dipendenza dall'alcol o stupefacenti</mat-checkbox>
+        <mat-checkbox [(ngModel)]="hasObesity.value">Obesità</mat-checkbox>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Patologie pregresse / comorbidità (es. ipertensione)</mat-label>
+            <textarea matInput rows="4" [formControl]="medicalHistory"></textarea>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button matButton="outlined" mat-dialog-close>Cancella</button>
+    <button matButton="outlined" (click)="conferma()">Conferma</button>
+</mat-dialog-actions>

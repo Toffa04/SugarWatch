@@ -117,9 +117,10 @@ export class HttpClientService {
     return this.httpClient.get<any[]>(url);
   }
 
-  nuovaAssunzioneFarmaco(request: MedicineIntake){
+  nuovaAssunzioneFarmaco(therapyId: number, quantity: number, dateTime: Date){
     const url = `${this.RESTdiabetesLogger}/medicine-intake/patient/${this.authService.getId!}`;
-    return this.httpClient.post(url, request);
+    const payload = { therapyId, quantity, dateTime };
+    return this.httpClient.post(url, payload);
   }
 
   aggiornaAssunzioneFarmaco(intake: MedicineIntake){
@@ -240,5 +241,30 @@ export class HttpClientService {
   eliminaNotifica(id: number) {
     const url = `${this.RESTdiabetesLogger}/notification/${id}`;
     return this.httpClient.delete(url);
+  }
+
+  aggiornaPaziente(patientId: number, payload: any) {
+    const url = `${this.RESTdiabetesLogger}/patient/${patientId}`;
+    return this.httpClient.put(url, payload);
+  }
+
+  nuovaTerapiaMedic(patientId: number, medicId: number, payload: any) {
+    const url = `${this.RESTdiabetesLogger}/therapy/patient/${patientId}/medic/${medicId}`;
+    return this.httpClient.post(url, payload);
+  }
+
+  aggiornaTerapiaMedic(therapyId: number, medicId: number, payload: any) {
+    const url = `${this.RESTdiabetesLogger}/therapy/${therapyId}/medic/${medicId}`;
+    return this.httpClient.put(url, payload);
+  }
+
+  assegnaMedico(patientId: number, medicId: number) {
+    const url = `${this.RESTdiabetesLogger}/patient/${patientId}/medic/${medicId}`;
+    return this.httpClient.put(url, {});
+  }
+
+  getRilevazioniSopraSoglia(patientId: number): Observable<any[]> {
+    const url = `${this.RESTdiabetesLogger}/glycemia/patient/${patientId}/above-threshold`;
+    return this.httpClient.get<any[]>(url);
   }
 }

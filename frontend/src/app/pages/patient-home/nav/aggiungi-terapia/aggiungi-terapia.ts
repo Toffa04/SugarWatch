@@ -65,12 +65,11 @@ export class AggiungiTerapia implements OnInit {
       return;
     }
 
-    const intake = this.terapia();
-    intake.therapy = this.selectedTherapy.value!;
-    intake.quantity = this.quantity.value!;
-    intake.dateTime = new Date(this.dateTime.value!);
+    const therapyId = this.selectedTherapy.value!.id;
+    const quantity = this.quantity.value!;
+    const dateTime = new Date(this.dateTime.value!);
 
-    this.httpClient.nuovaAssunzioneFarmaco(intake).subscribe({
+    this.httpClient.nuovaAssunzioneFarmaco(therapyId, quantity, dateTime).subscribe({
       next: () => {
         this.dialogRef.close();
       },

@@ -1,4 +1,4 @@
-<mat-toolbar class="border-b-4 border-blue-400">
+<!--<mat-toolbar class="border-b-4 border-blue-400">
   <div class="relative flex items-center w-full">
     <button matButton (click)="home()">
       <mat-icon>home</mat-icon>
@@ -15,6 +15,83 @@
         <mat-icon>info</mat-icon>
         Nessuna nuova notifica
       </button>
+    </mat-menu>
+
+    <button matButton [matMenuTriggerFor]="menuProfilo">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #menuProfilo="matMenu">
+      <button matButton (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Leave
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>-->
+
+<mat-toolbar class="border-b-4 border-blue-400">
+  <div class="relative flex items-center w-full">
+    <button matButton (click)="home()">
+      <mat-icon>home</mat-icon>
+    </button>
+    <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      Home
+    </span>
+
+    <button mat-icon-button [matMenuTriggerFor]="menuNotifiche" class="ml-auto">
+      <mat-icon
+        [matBadge]="nonLette.length > 0 ? nonLette.length : null"
+        matBadgeColor="warn"
+        matBadgeSize="small"
+      >
+        notifications
+      </mat-icon>
+    </button>
+
+    <mat-menu #menuNotifiche="matMenu" class="!max-w-96">
+      <div class="flex items-center justify-between px-4 py-2 border-b border-slate-200">
+        <span class="font-medium text-slate-700">Notifiche</span>
+        @if (nonLette.length > 0) {
+          <button
+            class="text-xs text-blue-600 hover:underline"
+            (click)="$event.stopPropagation(); segnaTutteComeLette()"
+          >
+            Segna tutte come lette
+          </button>
+        }
+      </div>
+
+      @if (notifiche().length === 0) {
+        <div class="px-4 py-6 text-center text-sm text-slate-400">
+          Nessuna notifica
+        </div>
+      } @else {
+        @for (notifica of notifiche(); track notifica.id) {
+          <button
+            mat-menu-item
+            class="!h-auto !py-3 !whitespace-normal"
+            [class.bg-slate-50]="!notifica.seen"
+            (click)="segnaComeLetta(notifica)"
+          >
+            <div class="flex items-start gap-3 w-full">
+              <mat-icon [class]="colorePerTipo(notifica.type)" class="!mt-0.5">
+                {{ iconaPerTipo(notifica.type) }}
+              </mat-icon>
+              <div class="flex flex-col gap-0.5 flex-1 min-w-0">
+                <span class="text-sm text-slate-700 whitespace-normal leading-snug">
+                  {{ notifica.message }}
+                </span>
+                <span class="text-xs text-slate-400">
+                  {{ notifica.time | date: 'dd/MM/yyyy HH:mm' }}
+                </span>
+              </div>
+              @if (!notifica.seen) {
+                <span class="w-2 h-2 rounded-full bg-blue-500 mt-1.5 shrink-0"></span>
+              }
+            </div>
+          </button>
+        }
+      }
     </mat-menu>
 
     <button matButton [matMenuTriggerFor]="menuProfilo">
